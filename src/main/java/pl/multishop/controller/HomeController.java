@@ -15,9 +15,9 @@ public class HomeController
     @RequestMapping("/")
     public String welcome(Model model)
     {
-        model.addAttribute("greeting", "MZK Bielsko-Biała.");
-        model.addAttribute("tagline", "Witamy w internetowym rozkładzie jazdy.");
-        model.addAttribute("description", "Strona prezentująca rozkład komunikacji miejskiej MZK Bielsko-Biała. Ważność rozkładu - 1.01.2017-1.01.2018 roku. Wszelkie uwagi prosimy kierować do autora.");
+        model.addAttribute("greeting", "Multishop Polska.");
+        model.addAttribute("tagline", "Witamy w internetowym sklepie internetowym.");
+        model.addAttribute("description", "Strona prezentująca asoryment sklepu. Wszelkie uwagi prosimy kierować do autora.");
         return "welcome";
     }
 }

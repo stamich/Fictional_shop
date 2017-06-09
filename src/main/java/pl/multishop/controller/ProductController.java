@@ -7,6 +7,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import pl.multishop.domain.repository.ProductRepository;
 
+/**
+ * Created by michal on 05.05.17.
+ */
+
 @Controller
 public class ProductController {
 

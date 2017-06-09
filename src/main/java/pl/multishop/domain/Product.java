@@ -3,7 +3,7 @@ package pl.multishop.domain;
 import java.math.BigDecimal;
 
 /**
- * Created by michal on 06.06.17.
+ * Created by michal on 05.05.17.
  */
 public class Product {
 

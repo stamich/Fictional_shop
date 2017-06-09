@@ -7,8 +7,9 @@ import pl.multishop.domain.repository.ProductRepository;
 import pl.multishop.service.OrderService;
 
 /**
- * Created by michal on 06.06.17.
+ * Created by michal on 06.05.17.
  */
+
 @Service
 public class OrderServiceImpl implements OrderService{
 
