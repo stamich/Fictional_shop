@@ -5,8 +5,9 @@ import java.math.BigDecimal;
 /**
  * Created by michal on 05.05.17.
  */
-public class Product {
 
+public class Product
+{
     private String productId;
     private String name;
     private BigDecimal unitPrice;
@@ -18,21 +19,25 @@ public class Product {
     private boolean discontinued;
     private String condition;
 
-    public Product() {
+    public Product()
+    {
         super();
     }
 
-    public Product(String productId, String name, BigDecimal unitPrice) {
+    public Product(String productId, String name, BigDecimal unitPrice)
+    {
         this.productId = productId;
         this.name = name;
         this.unitPrice = unitPrice;
     }
 
-    public String getProductId() {
+    public String getProductId()
+    {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(String productId)
+    {
         this.productId = productId;
     }
 
@@ -109,7 +114,8 @@ public class Product {
     }
 
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(Object obj)
+    {
         if (this == obj)
             return true;
         if (obj == null)
@@ -117,7 +123,8 @@ public class Product {
         if (getClass() != obj.getClass())
             return false;
         Product other = (Product) obj;
-        if (productId == null) {
+        if (productId == null)
+        {
             if (other.productId != null)
                 return false;
         } else if (!productId.equals(other.productId))
@@ -126,7 +133,8 @@ public class Product {
     }
 
     @Override
-    public int hashCode() {
+    public int hashCode()
+    {
         final int prime = 31;
         int result = 1;
         result = prime * result
@@ -135,7 +143,8 @@ public class Product {
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Product [productId=" + productId + ", name=" + name + "]";
     }
 }

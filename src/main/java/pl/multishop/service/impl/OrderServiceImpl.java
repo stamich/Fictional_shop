@@ -11,18 +11,19 @@ import pl.multishop.service.OrderService;
  */
 
 @Service
-public class OrderServiceImpl implements OrderService{
-
+public class OrderServiceImpl implements OrderService
+{
     @Autowired
     private ProductRepository productRepository;
 
-    public void processOrder(String productId, long quantity) {
+    public void processOrder(String productId, long quantity)
+    {
         Product productById = productRepository.getProductById(productId);
 
-        if(productById.getUnitsInStock() < quantity){
-            throw new IllegalArgumentException("Zbyt mało towaru. Obecna liczba sztuk w magazynie "+ productById.getUnitsInStock());
+        if(productById.getUnitsInStock() < quantity)
+        {
+            throw new IllegalArgumentException("Zbyt mało towaru. Obecna liczba sztuk w magazynie " + productById.getUnitsInStock());
         }
-
         productById.setUnitsInStock(productById.getUnitsInStock() - quantity);
     }
 }

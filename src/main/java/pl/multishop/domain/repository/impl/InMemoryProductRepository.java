@@ -13,14 +13,13 @@ import java.util.List;
  */
 
 @Repository
-public class InMemoryProductRepository implements ProductRepository{
+public class InMemoryProductRepository implements ProductRepository
+{
+    private List <Product> listOfProducts = new ArrayList<Product>();
 
-    private List<Product> listOfProducts = new ArrayList<Product>();
-
-    public InMemoryProductRepository() {
-
-
-        /*Product VW_Polo = new Product("P0021", "VW Polo", new BigDecimal(45000));
+    public InMemoryProductRepository()
+    {
+        Product VW_Polo = new Product("P0021", "VW Polo", new BigDecimal(45000));
         VW_Polo.setDescription("VW Polo - samochód osobowy klasy aut miejskich produkowany przez niemiecki koncern motoryzacyjny Volkswagen AG od 1978 roku.");
         VW_Polo.setCategory("car");
         VW_Polo.setManufacturer("Volkswagen");
@@ -36,7 +35,7 @@ public class InMemoryProductRepository implements ProductRepository{
         VW_Touran.setDescription("VW Touran - samochód osobowy typu minivan produkowany przez niemiecki koncern motoryzacyjny Volkswagen AG od 2003 roku.");
         VW_Touran.setCategory("Car");
         VW_Touran.setManufacturer("Volkswagen");
-        VW_Touran.setUnitsInStock(8);*/
+        VW_Touran.setUnitsInStock(8);
 
         Product iphone = new Product("P1001","iPhone 5s", new BigDecimal(2500));
         iphone.setDescription("Apple iPhone 5s, smartfon z 4-calowym ekranem o rozdzielczości 640×1136 i 8-megapikselowym aparatem");
@@ -56,32 +55,35 @@ public class InMemoryProductRepository implements ProductRepository{
         tablet_Nexus.setManufacturer("Google");
         tablet_Nexus.setUnitsInStock(1000);
 
-        //listOfProducts.add(VW_Polo);
-        //listOfProducts.add(VW_Golf);
-        //listOfProducts.add(VW_Touran);
+        listOfProducts.add(VW_Polo);
+        listOfProducts.add(VW_Golf);
+        listOfProducts.add(VW_Touran);
         listOfProducts.add(iphone);
         listOfProducts.add(laptop_dell);
         listOfProducts.add(tablet_Nexus);
     }
 
-    public List<Product> getAllProducts() {
+    public List<Product> getAllProducts()
+    {
         return listOfProducts;
     }
 
-    public Product getProductById(String productId) {
+    public Product getProductById(String productId)
+    {
         Product productById = null;
 
-        for(Product product : listOfProducts) {
-            if(product!=null && product.getProductId()!=null && product.getProductId().equals(productId)){
+        for(Product product : listOfProducts)
+        {
+            if(product!=null && product.getProductId()!=null && product.getProductId().equals(productId))
+            {
                 productById = product;
                 break;
             }
         }
-
-        if(productById == null){
+        if(productById == null)
+        {
             throw new IllegalArgumentException("Brak produktu o wskazanym id: "+ productId);
         }
-
         return productById;
     }
 }

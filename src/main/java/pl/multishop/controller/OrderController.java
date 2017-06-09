@@ -10,14 +10,15 @@ import pl.multishop.service.OrderService;
  */
 
 @Controller
-public class OrderController {
-
+public class OrderController // Klasa kontrolera zamówień - warstwa usług
+{
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping("/order/P1001/2")
-    public String process() {
+    @RequestMapping("/order")
+    public String process()
+    {
         orderService.processOrder("P1001", 2);
-        return "redirect:/products";
+        return "order";
     }
 }

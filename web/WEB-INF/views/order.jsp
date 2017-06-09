@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: michal
-  Date: 31.04.17
-  Time: 20:50
+  Date: 09.05.17
+  Time: 22:24
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -12,14 +12,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet"
           href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
-    <title>Asortyment</title>
+    <title>Zamówienie</title>
 </head>
 <body>
 <section>
     <div class="jumbotron">
         <div class="container">
-            <h1>Towary</h1>
-            <p>Oto cały asortyment dostępny w naszym sklepie:</p>
+            <h1>Zamówienia</h1>
+            <p>Oto kolejne zamówienie:</p>
         </div>
     </div>
 </section>
