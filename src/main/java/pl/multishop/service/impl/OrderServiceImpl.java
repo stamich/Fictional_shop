@@ -11,7 +11,7 @@ import pl.multishop.service.OrderService;
  */
 
 @Service
-public class OrderServiceImpl implements OrderService
+public class OrderServiceImpl implements OrderService // Implementacja zamówienia
 {
     @Autowired
     private ProductRepository productRepository;

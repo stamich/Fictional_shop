@@ -13,7 +13,7 @@ import pl.multishop.domain.repository.ProductRepository;
  */
 
 @Controller
-public class ProductController // Klasa kontrolera repozytorium produktów - warstwa danych
+public class ProductController // Klasa kontrolera repozytorium produktów - warstwa danych.
 {
     @Autowired
     private ProductRepository productRepository;

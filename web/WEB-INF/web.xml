@@ -12,6 +12,7 @@
             <param-value>/WEB-INF/spring/webcontext/DispatcherServlet-context.xml</param-value>
         </init-param>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/</url-pattern>

@@ -6,7 +6,7 @@ import java.math.BigDecimal;
  * Created by michal on 05.05.17.
  */
 
-public class Product
+public class Product // Implementacja produktu
 {
     private String productId;
     private String name;

@@ -10,7 +10,7 @@ import pl.multishop.service.OrderService;
  */
 
 @Controller
-public class OrderController // Klasa kontrolera zamówień - warstwa usług
+public class OrderController // Klasa kontrolera zamówień - warstwa usług.
 {
     @Autowired
     private OrderService orderService;

@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 @Repository
-public class InMemoryProductRepository implements ProductRepository
+public class InMemoryProductRepository implements ProductRepository // Baza danych repozytorium
 {
     private List <Product> listOfProducts = new ArrayList<Product>();
 
