@@ -6,11 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="S11_Project" />
         <module name="S3_shop" />
         <module name="S3_shop_a" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="S11_Project" target="1.5" />
       <module name="S3_shop" target="1.5" />
       <module name="S3_shop_a" target="1.5" />
     </bytecodeTargetLevel>

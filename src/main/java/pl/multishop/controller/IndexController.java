@@ -12,7 +12,7 @@ import java.util.GregorianCalendar;
  */
 
 @Controller
-public class HomeController // Klasa kontrolera strony głównej - warstwa prezentacji.
+public class IndexController // Klasa kontrolera strony głównej - warstwa prezentacji.
 {
     @RequestMapping("/")
     public String welcome(Model model)

@@ -27,5 +27,10 @@
         <servlet-name>DispatcherServlet</servlet-name>
         <url-pattern>/order</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>DispatcherServlet</servlet-name>
+        <url-pattern>/product</url-pattern>
+    </servlet-mapping>
 
 </web-app>
