@@ -12,11 +12,25 @@ import pl.multishop.model.Product;
 
 public interface ProductDao // Interfejs warstwy danych
 {
-    List <Product> getAllProducts();
+    public Product findById(int productId);
 
-    Product getProductById(String productID);
+    public Product findByName(String productName);
 
-    List<Product> getProductsByCategory(String category);
+    public void saveProduct(Product product);
 
-    Set<Product> getProductsByFilter(Map<String, List<String>> filterParams);
+    public void delProductById(int productId);
+
+    public List<Product> findAllProducts();
+
+    public Product findProductsByCategory(String productCategory);
+
+    public Set<Product> findProductsByFilter(Map<String, List<String>> filterParams);
+
+    //List <Product> getAllProducts();
+
+    //Product getProductById(String productID);
+
+    //List<Product> getProductsByCategory(String category);
+
+    //Set<Product> getProductsByFilter(Map<String, List<String>> filterParams);
 }

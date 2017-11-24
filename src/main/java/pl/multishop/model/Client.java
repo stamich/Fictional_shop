@@ -20,10 +20,10 @@ public class Client {
     @Column(name = "adres_klienta", nullable = false)
     private String clientAdress;
 
-    @Column(name = "Miasto", nullable = false)
+    @Column(name = "miasto", nullable = false)
     private String clientCity;
 
-    @Column(name = "Kraj", nullable = false)
+    @Column(name = "kraj", nullable = false)
     private String clientCountry;
 
     @Column(name = "email", nullable = false)

@@ -13,7 +13,7 @@ public class Product // Implementacja produktu
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true, updatable = false)
-    private String productId;
+    private int productId;
 
     @Column(name = "name", nullable = false)
     private String productName;
@@ -43,18 +43,18 @@ public class Product // Implementacja produktu
         super();
     }
 
-    public Product(String productId, String productName, BigDecimal unitPrice) {
+    public Product(int productId, String productName, BigDecimal unitPrice) {
         this.productId = productId;
         this.productName = productName;
         this.unitPrice = unitPrice;
     }
 
 
-    public String getProductId() {
+    public int getProductId() {
         return productId;
     }
 
-    public void setProductId(String productId) {
+    public void setProductId(int productId) {
         this.productId = productId;
     }
 
@@ -123,30 +123,18 @@ public class Product // Implementacja produktu
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
-            return false;
-        if (getClass() != obj.getClass())
-            return false;
-        Product other = (Product) obj;
-        if (productId == null)
-        {
-            if (other.productId != null)
-                return false;
-        } else if (!productId.equals(other.productId))
-            return false;
-        return true;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        return productId == product.productId;
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result
-                + ((productId == null) ? 0 : productId.hashCode());
-        return result;
+        return productId;
     }
 
     @Override

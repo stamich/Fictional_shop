@@ -5,14 +5,14 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "zamowienie")
-public class Order {
+public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false, unique = true, updatable = false)
     private int orderId;
 
-    @Column(name = "clientId", nullable = false, unique = true, updatable = false)
+    @Column(name = "numer_klienta", nullable = false, unique = true, updatable = false)
     private String clientId;
 
     @Column(name = "kwota", nullable = false)
@@ -21,11 +21,11 @@ public class Order {
     @Column(name = "data_zamowienia", nullable = false)
     private LocalDate orderDate;
 
-    public Order(){
+    public Orders(){
         super();
     }
 
-    public Order(int orderId, String clientId, double amount){
+    public Orders(int orderId, String clientId, double amount){
 
         this.orderId = orderId;
         this.clientId = clientId;
@@ -69,9 +69,9 @@ public class Order {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Order order = (Order) o;
+        Orders orders = (Orders) o;
 
-        return orderId == order.orderId;
+        return orderId == orders.orderId;
     }
 
     @Override
@@ -81,7 +81,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return "Order{" +
+        return "Orders{" +
                 "orderId=" + orderId +
                 ", clientId='" + clientId + '\'' +
                 '}';
