@@ -5,11 +5,8 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import pl.multishop.model.Client;
-import pl.multishop.model.Product;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @Repository("clientDao")
 public class ClientDaoImpl extends AbstractDao<Integer, Client> implements ClientDao{
@@ -42,10 +39,5 @@ public class ClientDaoImpl extends AbstractDao<Integer, Client> implements Clien
     public List<Client> findAllClients() {
         Criteria criteria = createEntityCriteria();
         return (List<Client>) criteria.list();
-    }
-
-    @Override
-    public Set<Product> findProductsByFilter(Map<String, List<String>> filterParams) {
-        return null;
     }
 }

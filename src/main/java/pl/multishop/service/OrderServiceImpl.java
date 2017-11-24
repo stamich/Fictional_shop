@@ -2,27 +2,57 @@ package pl.multishop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.multishop.dao.ProductDao;
-import pl.multishop.model.Product;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import pl.multishop.dao.OrderDao;
+import pl.multishop.model.Orders;
+
+import java.util.List;
 
 /**
  * Created by michal on 06.05.17.
  */
 
-@Service
-public class OrderServiceImpl implements OrderService // Implementacja zamówienia
-{
+@Service("orderService")
+@Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
+public class OrderServiceImpl implements OrderService {
+
     @Autowired
-    private ProductDao productRepository;
+    private OrderDao orderDao;
 
-    public void processOrder(String productId, long quantity)
-    {
-        Product productById = productRepository.getProductById(productId);
+    @Override
+    public Orders findById(int orderId) {
+        return orderDao.findById(orderId);
+    }
 
-        if(productById.getUnitsInStock() < quantity)
-        {
-            throw new IllegalArgumentException("Zbyt mało towaru. Obecna liczba sztuk w magazynie " + productById.getUnitsInStock());
+    @Override
+    public Orders findByClientId(String clientId) {
+        return orderDao.findByClientId(clientId);
+    }
+
+    @Override
+    public void saveOrder(Orders orders) {
+        orderDao.saveOrder(orders);
+    }
+
+    @Override
+    public void updateOrder(Orders orders) {
+        Orders entity = orderDao.findById(orders.getOrderId());
+        if(entity!=null) {
+            entity.setOrderId(orders.getOrderId());
+            entity.setClientId(orders.getClientId());
+            entity.setAmount(orders.getAmount());
+            entity.setOrderDate(orders.getOrderDate());
         }
-        productById.setUnitsInStock(productById.getUnitsInStock() - quantity);
+    }
+
+    @Override
+    public void delOrderById(int orderId) {
+        orderDao.delOrderById(orderId);
+    }
+
+    @Override
+    public List<Orders> findAllOrders() {
+        return orderDao.findAllOrders();
     }
 }

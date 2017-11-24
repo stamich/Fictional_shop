@@ -2,37 +2,63 @@ package pl.multishop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import pl.multishop.model.Product;
 import pl.multishop.dao.ProductDao;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-/**
- * Created by michal on 13.05.17.
- */
-
-@Service
+@Service("productService")
+@Transactional(propagation = Propagation.SUPPORTS, rollbackFor = Exception.class)
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductDao productRepository;
+    private ProductDao productDao;
 
-    public List<Product> getAllProducts() {
-        return productRepository.getAllProducts();
+    @Override
+    public Product findById(int productId) {
+        return productDao.findById(productId);
     }
 
-    public Product getProductById(String productID) {
-        return productRepository.getProductById(productID);
+    @Override
+    public Product findByName(String productName) {
+        return productDao.findByName(productName);
     }
 
-    public List<Product> getProductsByCategory(String category) {
-        return productRepository.getProductsByCategory(category);
+    @Override
+    public void saveProduct(Product product) {
+        productDao.saveProduct(product);
     }
 
-    public Set<Product> getProductsByFilter(Map<String, List<String>> filterParams) {
-        return productRepository.getProductsByFilter(filterParams);
+    @Override
+    public void updateProduct(Product product) {
+        Product entity = productDao.findById(product.getProductId());
+        if(entity!=null){
+            entity.setProductId(product.getProductId());
+            entity.setProductName(product.getProductName());
+            entity.setUnitPrice(product.getUnitPrice());
+            entity.setProductDescription(product.getProductDescription());
+            entity.setProductManufacturer(product.getProductManufacturer());
+            entity.setProductCategory(product.getProductCategory());
+            entity.setUnitsInStock(product.getUnitsInStock());
+            entity.setUnitsInOrder(product.getUnitsInOrder());
+            entity.setActive(product.isActive());
+        }
     }
 
+    @Override
+    public void delProductById(int productId) {
+        productDao.delProductById(productId);
+    }
+
+    @Override
+    public List<Product> findAllProducts() {
+        return productDao.findAllProducts();
+    }
+
+    @Override
+    public Product findProductsByCategory(String productCategory) {
+        return productDao.findProductsByCategory(productCategory);
+    }
 }

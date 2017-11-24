@@ -24,13 +24,4 @@ public interface ProductDao // Interfejs warstwy danych
 
     public Product findProductsByCategory(String productCategory);
 
-    public Set<Product> findProductsByFilter(Map<String, List<String>> filterParams);
-
-    //List <Product> getAllProducts();
-
-    //Product getProductById(String productID);
-
-    //List<Product> getProductsByCategory(String category);
-
-    //Set<Product> getProductsByFilter(Map<String, List<String>> filterParams);
 }

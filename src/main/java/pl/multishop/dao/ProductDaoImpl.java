@@ -7,8 +7,6 @@ import org.springframework.stereotype.Repository;
 import pl.multishop.model.Product;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 @Repository("productDao")
 public class ProductDaoImpl extends AbstractDao<Integer, Product> implements ProductDao {
@@ -49,10 +47,5 @@ public class ProductDaoImpl extends AbstractDao<Integer, Product> implements Pro
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("productCategory", productCategory));
         return (Product) criteria.uniqueResult();
-    }
-
-    @Override
-    public Set<Product> findProductsByFilter(Map<String, List<String>> filterParams) {
-        return null;
     }
 }

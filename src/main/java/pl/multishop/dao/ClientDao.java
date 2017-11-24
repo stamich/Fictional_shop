@@ -1,11 +1,8 @@
 package pl.multishop.dao;
 
 import pl.multishop.model.Client;
-import pl.multishop.model.Product;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public interface ClientDao {
 
@@ -19,5 +16,4 @@ public interface ClientDao {
 
     public List<Client> findAllClients();
 
-    public Set<Product> findProductsByFilter(Map<String, List<String>> filterParams);
 }
