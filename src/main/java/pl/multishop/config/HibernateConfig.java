@@ -22,7 +22,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "pl.multishop" })
-@PropertySource(value = { "classpath:application.properties" })
+@PropertySource(value = { "classpath:db.properties" })
 public class HibernateConfig {
 
     @Autowired

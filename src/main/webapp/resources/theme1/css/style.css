@@ -1,0 +1,9 @@
+p {column-count: 2; column-gap: 3em; line-height: 1.4em;}
+h1{text-align: center}
+h2{text-align: center}
+h3{text-align: center}
+
+body {font-family: Arial, sans-serif; background-color: gray; padding: 10px; margin: 150px}
+h1 {color: cornflowerblue}
+h2 {color: darkgoldenrod}
+h3 {color: linen}

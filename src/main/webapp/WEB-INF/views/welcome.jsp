@@ -9,8 +9,9 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <!---<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">--->
     <title>Multishop Polska</title>
+    <link href="../../resources/theme1/css/style.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 <section>

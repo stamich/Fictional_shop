@@ -1,9 +1,6 @@
 package pl.multishop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
@@ -14,43 +11,39 @@ import java.math.BigDecimal;
 public class Product // Implementacja produktu
 {
     @Id
-    @Column(name = "id", nullable = false, unique = true)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true, updatable = false)
     private String productId;
 
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String productName;
 
-    @Column(name = "unit_price")
+    @Column(name = "unit_price", nullable = false)
     private BigDecimal unitPrice;
 
-    @Column(name = "product_description")
+    @Column(name = "product_description", nullable = false)
     private String productDescription;
 
-    @Column(name = "product_manufacturer")
+    @Column(name = "product_manufacturer", nullable = false)
     private String productManufacturer;
 
-    @Column(name = "product_category")
+    @Column(name = "product_category", nullable = false)
     private String productCategory;
 
-    @Column(name ="units_in_stock")
+    @Column(name ="units_in_stock", nullable = false)
     private long unitsInStock;
 
-    @Column(name ="units_in_order")
+    @Column(name ="units_in_order", nullable = false)
     private long unitsInOrder;
 
-    @Column(name ="active")
+    @Column(name ="stan", nullable = false)
     private boolean active;
 
-    @Column(name ="active")
-    private String condition;
-
-    public Product()
-    {
+    public Product() {
         super();
     }
 
-    public Product(String productId, String productName, BigDecimal unitPrice)
-    {
+    public Product(String productId, String productName, BigDecimal unitPrice) {
         this.productId = productId;
         this.productName = productName;
         this.unitPrice = unitPrice;
@@ -129,17 +122,8 @@ public class Product // Implementacja produktu
         this.active = active;
     }
 
-    public String getCondition() {
-        return condition;
-    }
-
-    public void setCondition(String condition) {
-        this.condition = condition;
-    }
-
     @Override
-    public boolean equals(Object obj)
-    {
+    public boolean equals(Object obj) {
         if (this == obj)
             return true;
         if (obj == null)
@@ -157,8 +141,7 @@ public class Product // Implementacja produktu
     }
 
     @Override
-    public int hashCode()
-    {
+    public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result
@@ -167,8 +150,7 @@ public class Product // Implementacja produktu
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "Product [productId=" + productId + ", name=" + productName + "]";
     }
 }

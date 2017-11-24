@@ -1,9 +1,6 @@
 package pl.multishop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -11,20 +8,21 @@ import java.time.LocalDate;
 public class Order {
 
     @Id
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", nullable = false, unique = true, updatable = false)
     private int orderId;
 
-    @Column(name = "clientId")
+    @Column(name = "clientId", nullable = false, unique = true, updatable = false)
     private String clientId;
 
-    @Column(name = "kwota")
+    @Column(name = "kwota", nullable = false)
     private double amount;
 
-    @Column(name = "data_zamowienia")
+    @Column(name = "data_zamowienia", nullable = false)
     private LocalDate orderDate;
 
     public Order(){
-
+        super();
     }
 
     public Order(int orderId, String clientId, double amount){
