@@ -1,10 +1,9 @@
-package pl.multishop.service.impl;
+package pl.multishop.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.multishop.domain.Product;
-import pl.multishop.domain.repository.ProductRepository;
-import pl.multishop.service.ProductService;
+import pl.multishop.model.Product;
+import pl.multishop.dao.ProductDao;
 
 import java.util.List;
 import java.util.Map;
@@ -18,7 +17,7 @@ import java.util.Set;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
-    private ProductRepository productRepository;
+    private ProductDao productRepository;
 
     public List<Product> getAllProducts() {
         return productRepository.getAllProducts();

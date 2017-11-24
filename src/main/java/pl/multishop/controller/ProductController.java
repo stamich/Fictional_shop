@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.MatrixVariable;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//import pl.multishop.domain.repository.ProductRepository;
+//import pl.multishop.dao.ProductDao;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.multishop.service.ProductService;
 
@@ -24,7 +24,7 @@ import java.util.Map;
 public class ProductController // Klasa kontrolera repozytorium produktów - warstwa danych.
 {
     @Autowired
-    //private ProductRepository productRepository;
+    //private ProductDao productRepository;
     private ProductService productService;
 
     @RequestMapping

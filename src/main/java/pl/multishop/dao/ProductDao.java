@@ -1,16 +1,16 @@
-package pl.multishop.domain.repository;
+package pl.multishop.dao;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import pl.multishop.domain.Product;
+import pl.multishop.model.Product;
 
 /**
  * Created by michal on 05.05.17.
  */
 
-public interface ProductRepository // Interfejs warstwy danych
+public interface ProductDao // Interfejs warstwy danych
 {
     List <Product> getAllProducts();
 

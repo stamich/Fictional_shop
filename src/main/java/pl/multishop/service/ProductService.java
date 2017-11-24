@@ -1,6 +1,6 @@
 package pl.multishop.service;
 
-import pl.multishop.domain.Product;
+import pl.multishop.model.Product;
 
 import java.util.List;
 import java.util.Map;

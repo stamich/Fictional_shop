@@ -1,3 +1,5 @@
-lib
-target
-out
+.idea/**
+lib/**
+target/**
+out/**
+web/**
