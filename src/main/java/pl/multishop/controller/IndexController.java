@@ -14,7 +14,7 @@ import java.util.GregorianCalendar;
 @Controller
 public class IndexController // Klasa kontrolera strony głównej - warstwa prezentacji.
 {
-    @RequestMapping("/")
+    /*@RequestMapping("/")
     public String welcome(Model model)
     {
         GregorianCalendar date = new GregorianCalendar();
@@ -31,5 +31,5 @@ public class IndexController // Klasa kontrolera strony głównej - warstwa prez
         model.addAttribute("description1", "Strona prezentująca asoryment sklepu. Wszelkie uwagi prosimy kierować do autora.");
         model.addAttribute("description2", "Data ostatniej aktualizacji: " + year + "." + month + "." + day + " o godz. " + hour + ":" + minute + ":" + second);
         return "welcome";
-    }
+    }*/
 }

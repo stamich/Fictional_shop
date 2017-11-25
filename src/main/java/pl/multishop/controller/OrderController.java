@@ -12,7 +12,7 @@ import pl.multishop.service.OrderService;
 @Controller
 public class OrderController // Klasa kontrolera zamówień - warstwa usług.
 {
-    @Autowired
+    /*@Autowired
     private OrderService orderService;
 
     @RequestMapping("/order")
@@ -20,5 +20,5 @@ public class OrderController // Klasa kontrolera zamówień - warstwa usług.
     {
         orderService.processOrder("P1001", 2);
         return "order";
-    }
+    }*/
 }
