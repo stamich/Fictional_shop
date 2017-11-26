@@ -35,7 +35,7 @@ public class ClientServiceImpl implements ClientService {
     public void updateClient(Client client) {
         Client entity = clientDao.findById(client.getClientId());
         if(entity!=null){
-            entity.setClientId(client.getClientId());
+            //entity.setClientId(client.getClientId()); //updatable = false
             entity.setClientName(client.getClientName());
             entity.setClientSurname(client.getClientSurname());
             entity.setClientAdress(client.getClientAdress());

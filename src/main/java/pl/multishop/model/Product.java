@@ -12,31 +12,31 @@ public class Product // Implementacja produktu
 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
+    @Column(name = "numer_produktu", nullable = false, unique = true, updatable = false)
     private int productId;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "nazwa", nullable = false)
     private String productName;
 
-    @Column(name = "unit_price", nullable = false)
+    @Column(name = "cena_jedn", nullable = false)
     private BigDecimal unitPrice;
 
-    @Column(name = "product_description", nullable = false)
+    @Column(name = "opis_produktu", nullable = false)
     private String productDescription;
 
-    @Column(name = "product_manufacturer", nullable = false)
+    @Column(name = "producent", nullable = false)
     private String productManufacturer;
 
-    @Column(name = "product_category", nullable = false)
+    @Column(name = "kategoria", nullable = false)
     private String productCategory;
 
-    @Column(name ="units_in_stock", nullable = false)
+    @Column(name ="na_stanie", nullable = false)
     private long unitsInStock;
 
-    @Column(name ="units_in_order", nullable = false)
+    @Column(name ="zamowione", nullable = false)
     private long unitsInOrder;
 
-    @Column(name ="stan", nullable = false)
+    @Column(name ="aktywny", nullable = false)
     private boolean active;
 
     public Product() {

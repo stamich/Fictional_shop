@@ -39,10 +39,12 @@ public class OrderServiceImpl implements OrderService {
     public void updateOrder(Orders orders) {
         Orders entity = orderDao.findById(orders.getOrderId());
         if(entity!=null) {
-            entity.setOrderId(orders.getOrderId());
-            entity.setClientId(orders.getClientId());
+            //entity.setOrderId(orders.getOrderId());//updatable = false
+            //entity.setClientId(orders.getClientId());//updatable = false
+            //entity.setProductId(orders.getProductId());//updatable = false
             entity.setAmount(orders.getAmount());
             entity.setOrderDate(orders.getOrderDate());
+            entity.setOrderStatus(orders.getOrderStatus());
         }
     }
 

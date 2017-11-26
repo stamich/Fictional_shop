@@ -9,17 +9,23 @@ public class Orders {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false, unique = true, updatable = false)
+    @Column(name = "numer_zamowienia", nullable = false, unique = true, updatable = false)
     private int orderId;
 
     @Column(name = "numer_klienta", nullable = false, unique = true, updatable = false)
     private String clientId;
+
+    @Column(name = "numer_produktu", nullable = false, unique = true, updatable = false)
+    private int productId;
 
     @Column(name = "kwota", nullable = false)
     private double amount;
 
     @Column(name = "data_zamowienia", nullable = false)
     private LocalDate orderDate;
+
+    @Column(name = "status_zamowienia", nullable = false)
+    private String orderStatus;
 
     public Orders(){
         super();
@@ -48,6 +54,14 @@ public class Orders {
         this.clientId = clientId;
     }
 
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -62,6 +76,14 @@ public class Orders {
 
     public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
+    }
+
+    public String getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(String orderStatus) {
+        this.orderStatus = orderStatus;
     }
 
     @Override

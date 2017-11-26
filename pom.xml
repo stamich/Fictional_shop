@@ -24,6 +24,7 @@
         <javax-api.version>2.3.1</javax-api.version>
         <jstl.version>1.2</jstl.version>
         <tld.version>1.1.2</tld.version>
+        <ehcache.version>2.10.4</ehcache.version>
         <atiles.version>3.0.5</atiles.version>
         <apoi.version>3.15</apoi.version>
         <junit.version>4.12</junit.version>
@@ -116,6 +117,13 @@
             <version>${spring.version}</version>
         </dependency>
         <!-- Spring dependencies STOP -->
+
+        <!--Ehcache dependency -->
+        <dependency>
+            <groupId>net.sf.ehcache</groupId>
+            <artifactId>ehcache</artifactId>
+            <version>${ehcache.version}</version>
+        </dependency>
 
         <!-- Hibernate ORM -->
         <dependency>

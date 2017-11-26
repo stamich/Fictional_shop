@@ -11,7 +11,7 @@ public class Client {
     @Column(name = "numer klienta", nullable = false, unique = true, updatable = false)
     private int clientId;
 
-    @Column(name = "imie_klienta", nullable = false, updatable = false)
+    @Column(name = "imie_klienta", nullable = false)
     private String clientName;
 
     @Column(name = "nazwisko_klienta", nullable = false)

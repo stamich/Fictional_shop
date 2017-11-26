@@ -35,7 +35,7 @@ public class ProductServiceImpl implements ProductService {
     public void updateProduct(Product product) {
         Product entity = productDao.findById(product.getProductId());
         if(entity!=null){
-            entity.setProductId(product.getProductId());
+            //entity.setProductId(product.getProductId());//updatable = false
             entity.setProductName(product.getProductName());
             entity.setUnitPrice(product.getUnitPrice());
             entity.setProductDescription(product.getProductDescription());
