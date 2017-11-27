@@ -1,6 +1,8 @@
 package pl.multishop.model;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "klienci")
@@ -32,14 +34,17 @@ public class Client {
     @Column(name = "telefon", nullable = false)
     private String clientPhone;
 
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients")
+    private Set<Product> products = new HashSet<Product>(0);
+
     public Client(){
         super();
     }
 
-    public Client(String clientName, String clientSurname, String clientAdress) {
+    public Client(String clientName, String clientSurname, Set<Product> products) {
         this.clientName = clientName;
         this.clientSurname = clientSurname;
-        this.clientAdress = clientAdress;
+        this.products = products;
     }
 
     public int getClientId() {
@@ -104,6 +109,14 @@ public class Client {
 
     public void setClientPhone(String clientPhone) {
         this.clientPhone = clientPhone;
+    }
+
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
     }
 
     @Override

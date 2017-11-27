@@ -2,6 +2,8 @@ package pl.multishop.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by michal on 05.05.17.
@@ -39,14 +41,18 @@ public class Product // Implementacja produktu
     @Column(name ="aktywny", nullable = false)
     private boolean active;
 
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "zamowienie", joinColumns = { @JoinColumn(name = "numer_produktu") }, inverseJoinColumns = { @JoinColumn(name = "numer_klienta") })
+    private Set<Client> clients = new HashSet<Client>(0);
+
     public Product() {
         super();
     }
 
-    public Product(int productId, String productName, BigDecimal unitPrice) {
+    public Product(int productId, String productName, Set<Client> clients) {
         this.productId = productId;
         this.productName = productName;
-        this.unitPrice = unitPrice;
+        this.clients = clients;
     }
 
 
@@ -120,6 +126,14 @@ public class Product // Implementacja produktu
 
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    public Set<Client> getClients() {
+        return clients;
+    }
+
+    public void setClients(Set<Client> clients) {
+        this.clients = clients;
     }
 
     @Override

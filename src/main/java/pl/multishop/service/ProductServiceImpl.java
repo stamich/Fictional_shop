@@ -61,4 +61,10 @@ public class ProductServiceImpl implements ProductService {
     public Product findProductsByCategory(String productCategory) {
         return productDao.findProductsByCategory(productCategory);
     }
+
+    @Override
+    public boolean isProductNumberUnique(Integer productId, String productName){
+        Product product = findByName(productName);
+        return (product == null || (productId != null) && product.getProductId() == productId);
+    }
 }

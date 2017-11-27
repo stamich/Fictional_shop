@@ -2,23 +2,36 @@ package pl.multishop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import pl.multishop.model.Orders;
 import pl.multishop.service.OrderService;
+
+import java.util.List;
 
 /**
  * Created by michal on 06.05.17.
  */
 
 @Controller
-public class OrderController // Klasa kontrolera zamówień - warstwa usług.
-{
-    /*@Autowired
+public class OrderController {
+    @Autowired
     private OrderService orderService;
 
-    @RequestMapping("/order")
-    public String process()
-    {
-        orderService.processOrder("P1001", 2);
+    @RequestMapping(value = { "/list" }, method = RequestMethod.GET)
+    public String listOrders(ModelMap modelMap) {
+        List<Orders> orders = orderService.findAllOrders();
+        modelMap.addAttribute("orders", orders);
         return "order";
-    }*/
+    }
+
+    @RequestMapping(value = { "/new" }, method = RequestMethod.GET)
+    public String newOrder(ModelMap modelMap){
+        Orders orders = new Orders();
+        modelMap.addAttribute( "orders", orders);
+        modelMap.addAttribute("edit", false);
+        return "creating";
+    }
+
 }

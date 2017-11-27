@@ -25,7 +25,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     private final Class<T> persistentClass;
 
     /**
-     * Kkonstruktor klasy.
+     * Konstruktor klasy.
      */
     @SuppressWarnings("unchecked")
     public AbstractDao(){

@@ -25,4 +25,6 @@ public interface ProductService {
 
     public Product findProductsByCategory(String productCategory);
 
+    public boolean isProductNumberUnique(Integer productId, String productName);
+
 }
