@@ -36,7 +36,7 @@ public class HibernateConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan(new String[] { "pl.multishop" });
+        sessionFactory.setPackagesToScan(new String[] { "pl.multishop.model" });
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }

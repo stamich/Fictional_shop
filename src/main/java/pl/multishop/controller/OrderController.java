@@ -1,6 +1,7 @@
 package pl.multishop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +17,12 @@ import java.util.List;
 
 @Controller
 public class OrderController {
+
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private MessageSource messageSource;
 
     @RequestMapping(value = { "/list" }, method = RequestMethod.GET)
     public String listOrders(ModelMap modelMap) {
@@ -31,7 +36,7 @@ public class OrderController {
         Orders orders = new Orders();
         modelMap.addAttribute( "orders", orders);
         modelMap.addAttribute("edit", false);
-        return "creating";
+        return "creatingOrder";
     }
 
 }

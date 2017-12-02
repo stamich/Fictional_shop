@@ -77,6 +77,7 @@ public class ProductController {
 
     @RequestMapping(value = { "/edit-{productId}-product" }, method = RequestMethod.POST)
     public String updateProduct(@Valid Product product, BindingResult bindingResult, ModelMap modelMap){
+
         if(bindingResult.hasErrors()){
             return "creating";
         }

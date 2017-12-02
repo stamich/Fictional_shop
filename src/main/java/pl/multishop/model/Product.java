@@ -9,7 +9,7 @@ import java.util.Set;
  * Created by michal on 05.05.17.
  */
 @Entity
-@Table(name = "product")
+@Table(name = "produkt")
 public class Product // Implementacja produktu
 {
     @Id
