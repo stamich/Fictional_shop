@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: michal
-  Date: 04.12.17
-  Time: 22:50
+  Date: 09.05.17
+  Time: 22:25
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
@@ -37,36 +37,34 @@
         });
     </script>
 
-    <title>Lista klientów</title>
+    <title>Lista zamówień</title>
 </head>
 <html>
 <body>
 
 <div id="content">
-    <span class="smalltitle">Klienci</span>
+    <span class="smalltitle">Zamówienia</span>
     <div style="height: 5px;"></div>
     <table id="table">
         <thead>
         <tr>
-            <td>Numer klienta</td><td>Imię</td><td>Nazwisko</td><td>Adres</td><td>Miasto</td><td>Kraj</td><td>E-mail</td><td>Telefon</td><td>Usuwanie</td>
+            <td>Numer zamówienia</td><td>Numer klienta</td><td>Numer produktu</td><td>Kwota</td><td>Data</td><td>Status</td><td>Usuwanie</td>
         </tr>
         </thead>
         <tfoot>
         <tr>
-            <td>(Edycja)</td><td>Imię</td><td>Nazwisko</td><td>Adres</td><td>Miasto</td><td>Kraj</td><td>E-mail</td><td>Telefon</td><td>Usuwanie</td>
+            <td>Numer zamówienia</td><td>Numer klienta</td><td>Numer produktu</td><td>Kwota</td><td>Data</td><td>Status</td><td>Usuwanie</td>
         </tr>
         </tfoot>
-        <c:forEach items="${clients}" var="client">
+        <c:forEach items="${orders}" var="order">
             <tr>
-                <td><a href="<c:url value='/edit-${client.clientId}-client' />">${client.clientId}</a></td>
-                <td>${client.clientName}</td>
-                <td>${client.clientSurname}</td>
-                <td>${client.clientAdress}</td>
-                <td>${client.clientCity}</td>
-                <td>${client.clientCountry}</td>
-                <td>${client.clientEmail}</td>
-                <td>${client.clientPhone}</td>
-                <td><a href="<c:url value='/delete-${client.clientId}-client' />">Usuń</a></td>
+                <td><a href="<c:url value='/edit-${orders.orderId}-order' />">${orders.orderId}</a></td>
+                <td>${orders.clientId}</td>
+                <td>${orders.productId}</td>
+                <td>${orders.amount}</td>
+                <td>${orders.orderDate}</td>
+                <td>${orders.orderStatus}</td>
+                <td><a href="<c:url value='/delete-${orders.orderId}-order' />">Usuń</a></td>
             </tr>
         </c:forEach>
     </table>
@@ -78,4 +76,3 @@
 
 </body>
 </html>
-

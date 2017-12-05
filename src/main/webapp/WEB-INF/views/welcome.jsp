@@ -20,9 +20,9 @@
 <h2>Wybierz sposób wyszukiwania:</h2>
 
 <h3>
-    <a href=" <c:url value="products" /> ">Asosrtyment</a>
-    <a href=" <c:url value="clients" /> ">Klienci</a>
-    <a href=" <c:url value="orders" /> ">Zamówienia</a>
+    <a href=" <c:url value="productsList" /> ">Asosrtyment</a>
+    <a href=" <c:url value="clientsList" /> ">Klienci</a>
+    <a href=" <c:url value="ordersList" /> ">Zamówienia</a>
 </h3>
 
 </body>

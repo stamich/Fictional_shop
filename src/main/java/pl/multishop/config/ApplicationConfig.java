@@ -77,7 +77,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
      *
      * @return
      */
-    @Bean
+    /*@Bean
     public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
         tilesConfigurer.setDefinitions(new String[]{"/WEB-INF/layout/tiles.xml"});
@@ -89,5 +89,5 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     public void configureViewResolvers(ViewResolverRegistry registry) {
         TilesViewResolver viewResolver = new TilesViewResolver();
         registry.viewResolver(viewResolver);
-    }
+    }*/
 }

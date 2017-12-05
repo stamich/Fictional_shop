@@ -24,14 +24,14 @@ public class OrderController {
     @Autowired
     private MessageSource messageSource;
 
-    @RequestMapping(value = { "/list" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/ordersList" }, method = RequestMethod.GET)
     public String listOrders(ModelMap modelMap) {
         List<Orders> orders = orderService.findAllOrders();
         modelMap.addAttribute("orders", orders);
-        return "order";
+        return "orders";
     }
 
-    @RequestMapping(value = { "/new" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/newOrder" }, method = RequestMethod.GET)
     public String newOrder(ModelMap modelMap){
         Orders orders = new Orders();
         modelMap.addAttribute( "orders", orders);

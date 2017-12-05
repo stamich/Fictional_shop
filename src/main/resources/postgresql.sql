@@ -16,7 +16,7 @@ CREATE TABLE public.produkt
 CREATE TABLE public.zamowienie
 (
     numer_zamowienia SERIAL PRIMARY KEY NOT NULL,
-    numer_klienta VARCHAR(20) NOT NULL,
+    numer_klienta INT NOT NULL,
     numer_produktu INT NOT NULL,
     kwota DOUBLE PRECISION NOT NULL,
     data_zamowienia DATE NOT NULL,
@@ -34,3 +34,11 @@ CREATE TABLE public.klient
     email VARCHAR(30) NOT NULL,
     telefon VARCHAR(20) NOT NULL
 );
+
+ALTER TABLE public.zamowienie
+  ADD CONSTRAINT zamowienie_klient_numer_klienta_fk
+FOREIGN KEY (numer_klienta) REFERENCES klient (numer_klienta);
+
+ALTER TABLE public.zamowienie
+  ADD CONSTRAINT zamowienie_produkt_numer_produktu_fk
+FOREIGN KEY (numer_produktu) REFERENCES produkt (numer_produktu);

@@ -33,33 +33,33 @@ public class ProductController {
         return "product";
     }
 
-    @RequestMapping(value = { "/list" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/productsList" }, method = RequestMethod.GET)
     public String listProducts(ModelMap modelMap){
         List<Product> products = productService.findAllProducts();
         modelMap.addAttribute("products", products);
-        return "product";
+        return "products";
     }
 
-    @RequestMapping(value = { "/new" }, method = RequestMethod.GET)
+    @RequestMapping(value = { "/newProduct" }, method = RequestMethod.GET)
     public String newProduct(ModelMap modelMap){
         Product product = new Product();
         modelMap.addAttribute("product", product);
         modelMap.addAttribute("edit", false);
-        return "creating";
+        return "addProduct";
     }
 
-    @RequestMapping(value = { "/new" }, method = RequestMethod.POST)
+    @RequestMapping(value = { "/newProduct" }, method = RequestMethod.POST)
     public String saveProduct(@Valid Product product, BindingResult bindingResult, ModelMap modelMap){
 
         if(bindingResult.hasErrors()){
-            return "creating";
+            return "addProduct";
         }
 
         if(!productService.isProductNumberUnique(product.getProductId(), product.getProductName())){
             FieldError productNameError = new FieldError("product", "productName",
                     messageSource.getMessage("non.unique.productNumber", new String[]{product.getProductName()}, Locale.getDefault()));
             bindingResult.addError(productNameError);
-            return "creating";
+            return "addProduct";
         }
 
         productService.saveProduct(product);
@@ -72,21 +72,21 @@ public class ProductController {
         Product product = productService.findById(productId);
         modelMap.addAttribute("product", product);
         modelMap.addAttribute("edit", true);
-        return "creating";
+        return "addProduct";
     }
 
     @RequestMapping(value = { "/edit-{productId}-product" }, method = RequestMethod.POST)
     public String updateProduct(@Valid Product product, BindingResult bindingResult, ModelMap modelMap){
 
         if(bindingResult.hasErrors()){
-            return "creating";
+            return "addProduct";
         }
 
         if(!productService.isProductNumberUnique(product.getProductId(), product.getProductName())){
             FieldError productNameError = new FieldError("product", "productName",
                     messageSource.getMessage("non.unique.productNumber", new String[]{product.getProductName()}, Locale.getDefault()));
             bindingResult.addError(productNameError);
-            return "creating";
+            return "addProduct";
         }
 
         productService.saveProduct(product);

@@ -21,7 +21,7 @@ public class Product // Implementacja produktu
     private String productName;
 
     @Column(name = "cena_jedn", nullable = false)
-    private BigDecimal unitPrice;
+    private Double unitPrice;
 
     @Column(name = "opis_produktu", nullable = false)
     private String productDescription;
@@ -41,7 +41,7 @@ public class Product // Implementacja produktu
     @Column(name ="aktywny", nullable = false)
     private boolean active;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinTable(name = "zamowienie", joinColumns = { @JoinColumn(name = "numer_produktu") }, inverseJoinColumns = { @JoinColumn(name = "numer_klienta") })
     private Set<Client> clients = new HashSet<Client>(0);
 
@@ -72,11 +72,11 @@ public class Product // Implementacja produktu
         this.productName = productName;
     }
 
-    public BigDecimal getUnitPrice() {
+    public Double getUnitPrice() {
         return unitPrice;
     }
 
-    public void setUnitPrice(BigDecimal unitPrice) {
+    public void setUnitPrice(Double unitPrice) {
         this.unitPrice = unitPrice;
     }
 
