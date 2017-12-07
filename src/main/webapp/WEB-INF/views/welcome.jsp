@@ -23,6 +23,8 @@
     <a href=" <c:url value="productsList" /> ">Asosrtyment</a>
     <a href=" <c:url value="clientsList" /> ">Klienci</a>
     <a href=" <c:url value="ordersList" /> ">Zamówienia</a>
+
+    <a href=" <c:url value="multishop" /> ">Sklep</a>
 </h3>
 
 </body>

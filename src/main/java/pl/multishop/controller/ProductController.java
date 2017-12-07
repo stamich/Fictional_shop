@@ -28,9 +28,9 @@ public class ProductController {
     @Autowired
     private MessageSource messageSource;
 
-    @RequestMapping(value = "/products", method = RequestMethod.GET)
+    @RequestMapping(value = "/multishop", method = RequestMethod.GET)
     public String product(){
-        return "product";
+        return "/customer/product";
     }
 
     @RequestMapping(value = { "/productsList" }, method = RequestMethod.GET)

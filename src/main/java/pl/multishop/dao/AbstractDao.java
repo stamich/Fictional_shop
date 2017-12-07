@@ -53,12 +53,25 @@ public abstract class AbstractDao<PK extends Serializable, T> {
         return (T) getSession().get(persistentClass, key);
     }
 
+    @SuppressWarnings("unchecked")
+    public T getByKey(PK key){
+        return (T) getSession().get(persistentClass, key);
+    }
+
     /**
      * Metoda zachowująca encje.
      * @param entity
      */
     public void persistEntity(T entity) {
         getSession().persist(entity);
+    }
+
+    /**
+     * This method updates entity
+     * @param entity
+     */
+    public void updateEntity(T entity){
+        getSession().update(entity);
     }
 
     /**

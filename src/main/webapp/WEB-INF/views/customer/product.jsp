@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -25,6 +26,7 @@
 <section class="container">
     <div class="row">
         <div class="col-md-5">
+            <form:form method="GET" modelAttribute="product">
             <h3>${product.name}</h3>
             <p>${product.description}</p>
             <p>
@@ -48,7 +50,7 @@
             </a>
 
             </p>
-
+            </form:form>
         </div>
     </div>
 </section>

@@ -15,4 +15,9 @@ public class IndexController {
     public String indexPage(){
         return "welcome";
     }
+
+    @RequestMapping(value = "/product", method = RequestMethod.GET)
+    public String productPage(){
+        return "product";
+    }
 }

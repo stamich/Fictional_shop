@@ -20,4 +20,6 @@ public interface OrderService {
     public void delOrderById(int orderId);
 
     public List<Orders> findAllOrders();
+
+    public boolean isOrderNumberUnique(Integer orderId, String clientId);
 }

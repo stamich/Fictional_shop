@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import pl.multishop.dao.OrderDao;
 import pl.multishop.model.Orders;
+import pl.multishop.model.Product;
 
 import java.util.List;
 
@@ -56,5 +57,11 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Orders> findAllOrders() {
         return orderDao.findAllOrders();
+    }
+
+    @Override
+    public boolean isOrderNumberUnique(Integer orderId, String clientId){
+        Orders orders = findByClientId(clientId);
+        return (orders == null || (orderId != null) && orders.getOrderId() == orderId);
     }
 }
