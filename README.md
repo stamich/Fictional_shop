@@ -6,6 +6,7 @@ The business logic:
 - Spring Security 4,
 - Hibernate 5,
 - PostgreSQL 9.5 database.
+- TDD: jUnit, Mockito.
 
 The frontend:
 - HTML5,
