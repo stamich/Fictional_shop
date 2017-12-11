@@ -9,13 +9,8 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
 /**
- * Klasa abstrakcyjna implementująca interfejs Serializable.
- * Dzięki temu może ona serializować obiekty - dane tabelaryczne.
- * Klasa ta wyjątkowo nie deklaruje metod abstrakcyjnych, jednak
- * definiuje metody konkretne, służące do zarządzania Fabryką Sesji
- * frameworka Hibernate. Dzięki temu może po niej dziedziczyć wiele
- * klas konkretnych, reprezentujących różne modele utrwalania (tutaj
- * dwa modele - umowa oraz system).
+ * The abstract class implemented Serializable interface for
+ * serializing Domain Access Objects(DAO).
  * @author Michał Stawarski
  * @param <PK>
  * @param <T>
@@ -25,7 +20,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     private final Class<T> persistentClass;
 
     /**
-     * Konstruktor klasy.
+     * Constructor.
      */
     @SuppressWarnings("unchecked")
     public AbstractDao(){
@@ -36,23 +31,28 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     private SessionFactory sessionFactory;
 
     /**
-     * Metoda uruchamiająca fabrykę sesji.
-     * @return
+     * This method turns on session factory of Hibernate.
+     * @return sessionFactory.getCurrentSession()
      */
     protected Session getSession(){
         return sessionFactory.getCurrentSession();
     }
 
     /**
-     * Metoda pobierająca encje.
+     * This method gets the object (entity).
      * @param key
-     * @return
+     * @return (T) getSession().get(persistentClass, key)
      */
     @SuppressWarnings("unchecked")
     public T getById(PK key) {
         return (T) getSession().get(persistentClass, key);
     }
 
+    /**
+     * This method gets the object (entity).
+     * @param key
+     * @return (T) getSession().get(persistentClass, key)
+     */
     @SuppressWarnings("unchecked")
     public T getByKey(PK key){
         return (T) getSession().get(persistentClass, key);
@@ -67,7 +67,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     }
 
     /**
-     * This method updates entity
+     * This method persists the object (entity).
      * @param entity
      */
     public void updateEntity(T entity){
@@ -75,7 +75,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     }
 
     /**
-     * Metoda usuwająca encje.
+     * This method deletes the object (entity).
      * @param entity
      */
     public void deleteEntity(T entity) {
@@ -83,8 +83,8 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     }
 
     /**
-     * Metoda tworząca właściwości encji.
-     * @return
+     * This method creates properties of the object (entity).
+     * @return getSession().createCriteria(persistentClass)
      */
     protected Criteria createEntityCriteria(){
         return getSession().createCriteria(persistentClass);

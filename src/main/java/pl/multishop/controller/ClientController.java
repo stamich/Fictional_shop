@@ -6,7 +6,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.multishop.model.Client;
-import pl.multishop.model.Orders;
 import pl.multishop.service.ClientService;
 
 import java.util.List;

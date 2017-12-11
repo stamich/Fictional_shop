@@ -7,24 +7,25 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * Created by michal on 13.06.17.
+ * Interface of service layer for product model.
+ * @author Michał Stawarski
  */
 public interface ProductService {
 
-    public Product findById(int productId);
+    Product findById(int productId);
 
-    public Product findByName(String productName);
+    Product findByName(String productName);
 
-    public void saveProduct(Product product);
+    void saveProduct(Product product);
 
-    public void updateProduct(Product product);
+    void updateProduct(Product product);
 
-    public void delProductById(int productId);
+    void delProductById(int productId);
 
-    public List<Product> findAllProducts();
+    List<Product> findAllProducts();
 
-    public Product findProductsByCategory(String productCategory);
+    Product findProductsByCategory(String productCategory);
 
-    public boolean isProductNumberUnique(Integer productId, String productName);
+    boolean isProductNumberUnique(Integer productId, String productName);
 
 }

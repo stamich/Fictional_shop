@@ -4,12 +4,16 @@ import pl.multishop.model.User;
 
 import java.util.List;
 
+/**
+ * Interface of DAO layer for user model.
+ * @author Michał Stawarski
+ */
 public interface UserDao {
 
-    public User findById(int userId);
-    public User findBySsO(String sSoId);
-    public void saveUser(User user);
-    public void deleteBySso(String sSoId);
-    public List<User> findAllUsers();
+    User findById(int userId);
+    User findBySsO(String sSoId);
+    void saveUser(User user);
+    void deleteBySso(String sSoId);
+    List<User> findAllUsers();
 
 }

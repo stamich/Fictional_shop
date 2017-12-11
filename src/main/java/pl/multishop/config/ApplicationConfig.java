@@ -98,7 +98,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
     }
 
     /**
-     * The methods of Apache Tiles configuration.
+     * The methods for Apache Tiles configuration.
      *
      * @return
      */

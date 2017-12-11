@@ -5,21 +5,22 @@ import pl.multishop.model.Orders;
 import java.util.List;
 
 /**
- * Created by michal on 06.05.17.
+ * Interface of service layer for order model.
+ * @author Michał Stawarski
  */
 public interface OrderService {
 
-    public Orders findById(int orderId);
+    Orders findById(int orderId);
 
-    public Orders findByClientId(String clientId);
+    Orders findByClientId(String clientId);
 
-    public void saveOrder(Orders orders);
+    void saveOrder(Orders orders);
 
-    public void updateOrder(Orders orders);
+    void updateOrder(Orders orders);
 
-    public void delOrderById(int orderId);
+    void delOrderById(int orderId);
 
-    public List<Orders> findAllOrders();
+    List<Orders> findAllOrders();
 
-    public boolean isOrderNumberUnique(Integer orderId, String clientId);
+    boolean isOrderNumberUnique(Integer orderId, String clientId);
 }

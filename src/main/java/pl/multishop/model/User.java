@@ -9,6 +9,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+/**
+ * The POJO (Plain Old Java Object) class for user model.
+ * @author Michał Stawarski
+ * @version 1.0
+ */
 @Entity
 @Table(name = "users")
 public class User implements Serializable {

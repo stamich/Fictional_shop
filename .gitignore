@@ -1,6 +1,12 @@
-.directory
+#directory:
+
 .idea/**
 lib/**
 target/**
 out/**
 web/**
+
+#file:
+
+.directory
+S11_Project.iml

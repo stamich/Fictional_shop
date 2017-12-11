@@ -2,6 +2,10 @@ package pl.multishop.model;
 
 import java.io.Serializable;
 
+/**
+ * This is the enum class that creates roles of users.
+ * @author Michal Stawarski
+ */
 public enum UserProfileType implements Serializable {
 
     CLIENT("CLIENT"), // Role of client

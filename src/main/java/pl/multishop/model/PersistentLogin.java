@@ -5,6 +5,11 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * The POJO (Plain Old Java Object) class for login model.
+ * @author Michał Stawarski
+ * @version 1.0
+ */
 @Entity
 @Table(name = "persistent_logins")
 public class PersistentLogin implements Serializable {

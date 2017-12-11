@@ -5,9 +5,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Created by michal on 30.04.17.
+ * This simple class contains the main application's controller.
+ * @author Michal Stawarski
  */
-
 @Controller
 public class IndexController {
 
@@ -16,7 +16,7 @@ public class IndexController {
         return "welcome";
     }
 
-    @RequestMapping(value = "/product", method = RequestMethod.GET)
+    @RequestMapping(value = {"/productView"}, method = RequestMethod.GET)
     public String productPage(){
         return "product";
     }

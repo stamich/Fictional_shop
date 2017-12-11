@@ -4,9 +4,13 @@ import pl.multishop.model.UserProfile;
 
 import java.util.List;
 
+/**
+ * Interface of DAO layer for user profile model.
+ * @author Michał Stawarski
+ */
 public interface UserProfileDao {
 
-    public UserProfile findByType(String type);
-    public UserProfile findById(int profileId);
-    public List<UserProfile> findAll();
+    UserProfile findByType(String type);
+    UserProfile findById(int profileId);
+    List<UserProfile> findAll();
 }

@@ -17,6 +17,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
+/**
+ * This is the main Spring Security class.
+ * @author Michal Stawarski
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityApplicationConfig extends WebSecurityConfigurerAdapter{

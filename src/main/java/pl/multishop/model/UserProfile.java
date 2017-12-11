@@ -5,6 +5,11 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * The POJO (Plain Old Java Object) class for user profile model.
+ * @author Michał Stawarski
+ * @version 1.0
+ */
 @Entity
 @Table(name = "user_profile")
 public class UserProfile implements Serializable {

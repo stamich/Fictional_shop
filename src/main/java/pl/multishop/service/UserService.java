@@ -4,6 +4,10 @@ import pl.multishop.model.User;
 
 import java.util.List;
 
+/**
+ * Interface of service layer for user model.
+ * @author Michał Stawarski
+ */
 public interface UserService {
 
     User findById(int userId);

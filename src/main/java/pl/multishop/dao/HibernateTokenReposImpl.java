@@ -11,10 +11,17 @@ import pl.multishop.model.PersistentLogin;
 import java.time.LocalDate;
 import java.util.Date;
 
+/**
+ * This class implements PersistentTokenRepository interface from Spring Security.
+ */
 @Repository("tokenRepositoryDao")
 @Transactional
 public class HibernateTokenReposImpl extends AbstractDao<String, PersistentLogin> implements PersistentTokenRepository{
 
+    /**
+     * This method creates new token for logging. Token is unique for each one user.
+     * @param persistentRememberMeToken
+     */
     @Override
     public void createNewToken(PersistentRememberMeToken persistentRememberMeToken) {
         PersistentLogin persistentLogin = new PersistentLogin();
@@ -27,6 +34,12 @@ public class HibernateTokenReposImpl extends AbstractDao<String, PersistentLogin
         persistEntity(persistentLogin);
     }
 
+    /**
+     * This method updates token of user.
+     * @param seriesId
+     * @param tokenValue
+     * @param lastUsed
+     */
     @Override
     public void updateToken(String seriesId, String tokenValue, Date lastUsed) {
         PersistentLogin persistentLogin = getByKey(seriesId);
@@ -35,6 +48,11 @@ public class HibernateTokenReposImpl extends AbstractDao<String, PersistentLogin
         updateEntity(persistentLogin);
     }
 
+    /**
+     * This method gets token for its series Id.
+     * @param seriesId
+     * @return
+     */
     @Override
     public PersistentRememberMeToken getTokenForSeries(String seriesId) {
         try {
@@ -49,6 +67,10 @@ public class HibernateTokenReposImpl extends AbstractDao<String, PersistentLogin
         }
     }
 
+    /**
+     * This method removes token.
+     * @param username
+     */
     @Override
     public void removeUserTokens(String username) {
         Criteria criteria = createEntityCriteria();

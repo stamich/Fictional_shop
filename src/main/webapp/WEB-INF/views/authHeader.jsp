@@ -1,16 +1,8 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: michal
-  Date: 08.12.17
-  Time: 10:12
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Title</title>
-</head>
-<body>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
 
-</body>
-</html>
+<div class="authbar">
+    <span>Dear <strong>${loggedinuser}</strong>, Welcome to CrazyUsers.</span> <span class="floatRight"><a href="<c:url value="/logout" />">Logout</a></span>
+</div>
+

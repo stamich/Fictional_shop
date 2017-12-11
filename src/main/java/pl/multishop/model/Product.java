@@ -6,12 +6,13 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Created by michal on 05.05.17.
+ * The POJO (Plain Old Java Object) class for product model.
+ * @author Michał Stawarski
+ * @version 1.0
  */
 @Entity
 @Table(name = "produkt")
-public class Product // Implementacja produktu
-{
+public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "numer_produktu", nullable = false, unique = true, updatable = false)

@@ -3,6 +3,11 @@ package pl.multishop.model;
 import javax.persistence.*;
 import java.time.LocalDate;
 
+/**
+ * The POJO (Plain Old Java Object) class for order model.
+ * @author Michał Stawarski
+ * @version 1.0
+ */
 @Entity
 @Table(name = "zamowienie")
 public class Orders {

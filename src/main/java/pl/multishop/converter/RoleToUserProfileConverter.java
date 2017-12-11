@@ -9,6 +9,7 @@ import pl.multishop.service.UserProfileService;
 /**
  * This class converts profil of user and implements parametric
  * Spring interface called Converter.
+ * @author Michal Stawarski
  */
 @Component
 public class RoleToUserProfileConverter implements Converter<Object, UserProfile>{
@@ -17,7 +18,7 @@ public class RoleToUserProfileConverter implements Converter<Object, UserProfile
     UserProfileService userProfileService;
 
     /**
-     * This method gets UserProfile by Id
+     * This method gets UserProfile by Id number.
      * @param element
      * @return userProfile
      */

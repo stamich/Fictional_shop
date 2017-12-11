@@ -16,9 +16,9 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 /**
- * Klasa konfiguracyjna frameworka Hibernate.
+ * The class for configuration Hibernate connection to database.
+ * @author Michal Stawarski
  */
-
 @Configuration
 @EnableTransactionManagement
 @ComponentScan({ "pl.multishop" })
@@ -29,8 +29,8 @@ public class HibernateConfig {
     private Environment environment;
 
     /**
-     * Konfiguracja Fabryki sesji frameworka Hibernate.
-     * @return
+     * This method configures Session Factory of Hibernate.
+     * @return sessionFactory
      */
     @Bean
     public LocalSessionFactoryBean sessionFactory() {
@@ -42,8 +42,8 @@ public class HibernateConfig {
     }
 
     /**
-     * Konfiguracja żródła danych (połączenia z bazą danych).
-     * @return
+     * This method configures data source of Hibernate.
+     * @return dataSource
      */
     @Bean
     public DataSource dataSource() {
@@ -56,8 +56,8 @@ public class HibernateConfig {
     }
 
     /**
-     * Konfiguracja właściwości Hibernate.
-     * @return
+     * This method configures Hibernate properties.
+     * @return properties
      */
     private Properties hibernateProperties() {
         Properties properties = new Properties();
@@ -68,9 +68,9 @@ public class HibernateConfig {
     }
 
     /**
-     * Konfiguracja menedżera transakcji danych.
+     * This method configures transaction manager.
      * @param s
-     * @return
+     * @return txManager
      */
     @Bean
     @Autowired

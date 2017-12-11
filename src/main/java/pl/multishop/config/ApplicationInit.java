@@ -9,9 +9,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRegistration;
 
 /**
- * Klasa inicjatora aplikacji pracującej pod kontrolą Springa
+ * The Spring's initiatior class.
+ * @author Michal Stawarski
+ *
  */
-
 public class ApplicationInit implements WebApplicationInitializer {
 
     public void onStartup(ServletContext container) throws ServletException {

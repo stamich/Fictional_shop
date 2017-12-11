@@ -6,12 +6,12 @@ The business logic:
 - Spring Security 4,
 - Hibernate 5,
 - PostgreSQL 9.5 database.
-- TDD: jUnit, Mockito.
+- TDD: JUnit, Mockito.
 
 The frontend:
 - HTML5,
 - CSS3,
 - JavaScript,
-- Apache Tiles 3.
+- Thymyleaf 3 (in project).
 
 Documentation made in JavaDoc.

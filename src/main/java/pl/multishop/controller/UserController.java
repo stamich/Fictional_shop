@@ -23,6 +23,10 @@ import javax.validation.Valid;
 import java.util.List;
 import java.util.Locale;
 
+/**
+ * This class of presentation layer provides user controller.
+ * @author Michal Stawarski
+ */
 @Controller
 @RequestMapping("/login")
 @SessionAttributes("roles")
@@ -44,28 +48,27 @@ public class UserController {
     private PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices;
 
     /**
-     * This method lists all existing users.
+     * This method lists all existing users (REST - GET request).
      */
     @RequestMapping(value = { "/login", "/listUsers"}, method = RequestMethod.GET)
     public String listUsers(ModelMap modelMap){
         List<User> users = userService.findAllUsers();
         modelMap.addAttribute("users", users);
         modelMap.addAttribute("loggedinuser", getPrincipal());
-        return "userslist";
+        return "usersList";
     }
 
     /**
-     * This method provides the medium to add a new user.
+     * This method provides the medium to add a new user (REST - GET request).
      */
     @RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
-    public String newUser(ModelMap model) {
+    public String newUser(ModelMap modelMap) {
         User user = new User();
-        model.addAttribute("user", user);
-        model.addAttribute("edit", false);
-        model.addAttribute("loggedinuser", getPrincipal());
+        modelMap.addAttribute("user", user);
+        modelMap.addAttribute("edit", false);
+        modelMap.addAttribute("loggedinuser", getPrincipal());
         return "registration";
     }
-
 
     /**
      * This method will be called on form submission, handling POST request for
@@ -87,11 +90,11 @@ public class UserController {
         modelMap.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " registered successfully");
         modelMap.addAttribute("loggedinuser", getPrincipal());
         //return "success";
-        return "registrationsuccess";
+        return "registrationSuccess";
     }
 
     /**
-     * This method provides the medium to update an existing user.
+     * This method provides the medium to update an existing user (REST - GET request).
      */
     @RequestMapping(value = { "/edit-user-{sSoId}" }, method = RequestMethod.GET)
     public String editUser(@PathVariable String sSoId, ModelMap modelMap) {
@@ -124,21 +127,21 @@ public class UserController {
 
         modelMap.addAttribute("success", "User " + user.getFirstName() + " "+ user.getLastName() + " updated successfully");
         modelMap.addAttribute("loggedinuser", getPrincipal());
-        return "registrationsuccess";
+        return "registrationSuccess";
     }
 
     /**
-     * This method deletes an user by it's SSOID value.
+     * This method deletes an user by it's SSOID value (REST - GET request).
      */
     @RequestMapping(value = { "/delete-user-{sSoId}" }, method = RequestMethod.GET)
     public String deleteUser(@PathVariable String sSoId) {
         userService.deleteUserBySSO(sSoId);
-        return "redirect:/list";
+        return "redirect:/listUsers";
     }
 
 
     /**
-     * This method provides UserProfile list to views
+     * This method provides UserProfile list to views.
      */
     @ModelAttribute("roles")
     public List<UserProfile> initializeProfiles() {
@@ -146,7 +149,7 @@ public class UserController {
     }
 
     /**
-     * This method handles Access-Denied redirect.
+     * This method handles Access-Denied redirect (REST - GET request).
      */
     @RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
     public String accessDeniedPage(ModelMap modelMap) {
@@ -163,12 +166,12 @@ public class UserController {
         if (isCurrentAuthenticationAnonymous()) {
             return "login";
         } else {
-            return "redirect:/list";
+            return "redirect:/listUsers";
         }
     }
 
     /**
-     * This method handles logout requests.
+     * This method handles logout requests (REST - GET request).
      * Toggle the handlers if you are RememberMe functionality is useless in your app.
      */
     @RequestMapping(value="/logout", method = RequestMethod.GET)

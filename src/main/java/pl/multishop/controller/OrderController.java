@@ -17,9 +17,9 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by michal on 06.05.17.
+ * This class of presentation layer provides order controller.
+ * @author Michal Stawarski
  */
-
 @Controller
 public class OrderController {
 
@@ -29,6 +29,11 @@ public class OrderController {
     @Autowired
     private MessageSource messageSource;
 
+    /**
+     * This method lists all exisiting orders (REST - GET).
+     * @param modelMap
+     * @return orders
+     */
     @RequestMapping(value = { "/ordersList" }, method = RequestMethod.GET)
     public String listOrders(ModelMap modelMap) {
         List<Orders> orders = orderService.findAllOrders();
@@ -36,6 +41,11 @@ public class OrderController {
         return "orders";
     }
 
+    /**
+     * This method creates the new order (REST - GET).
+     * @param modelMap
+     * @return creatingOrder
+     */
     @RequestMapping(value = { "/newOrder" }, method = RequestMethod.GET)
     public String newOrder(ModelMap modelMap){
         Orders orders = new Orders();
@@ -44,6 +54,13 @@ public class OrderController {
         return "creatingOrder";
     }
 
+    /**
+     * This method saves created order (REST - POST).
+     * @param orders
+     * @param bindingResult
+     * @param modelMap
+     * @return orderSuccess
+     */
     @RequestMapping(value = { "/newOrder" }, method = RequestMethod.POST)
     public String saveOrder(@Valid Orders orders, BindingResult bindingResult, ModelMap modelMap){
 
@@ -63,6 +80,12 @@ public class OrderController {
         return "orderSuccess";
     }
 
+    /**
+     * This method allows to edit order properties (REST - GET).
+     * @param orderId
+     * @param modelMap
+     * @return addOrder
+     */
     @RequestMapping(value = { "/edit-{orderId}-order" }, method = RequestMethod.GET)
     public String editOrder(@PathVariable int orderId, ModelMap modelMap){
         Orders orders = orderService.findById(orderId);
@@ -71,8 +94,16 @@ public class OrderController {
         return "addOrder";
     }
 
+    /**
+     * This method allows to update order properties (REST - POST).
+     * @param orders
+     * @param bindingResult
+     * @param modelMap
+     * @param orderId
+     * @return orderSuccess
+     */
     @RequestMapping(value = { "/edit-{orderId}-order" }, method = RequestMethod.POST)
-    public String updateOrder(@Valid Orders orders, BindingResult bindingResult, ModelMap modelMap){
+    public String updateOrder(@Valid Orders orders, BindingResult bindingResult, ModelMap modelMap, @PathVariable int orderId){
 
         if(bindingResult.hasErrors()){
             return "addOrder";
@@ -90,6 +121,11 @@ public class OrderController {
         return "orderSuccess";
     }
 
+    /**
+     * This method deletes existing order by it id number (REST - GET).
+     * @param orderId
+     * @return redirect:/orderList
+     */
     @RequestMapping(value = { "/delete-{orderId}-order" }, method = RequestMethod.GET)
     public String deleteOrder(@PathVariable int orderId){
         orderService.delOrderById(orderId);

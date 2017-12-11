@@ -9,9 +9,19 @@ import pl.multishop.model.User;
 
 import java.util.List;
 
+/**
+ * This class extends AbstractDao class and implements UserDao interface
+ * for creating methods used with user model.
+ * @author Michał Stawarski
+ */
 @Repository("userDao")
 public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao{
 
+    /**
+     * This method finds user by its unique id.
+     * @param userId
+     * @return user
+     */
     @Override
     public User findById(int userId) {
         User user = getByKey(userId);
@@ -21,6 +31,11 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao{
         return user;
     }
 
+    /**
+     * This method finds user by its unique sso.
+     * @param sSoId
+     * @return user
+     */
     @Override
     public User findBySsO(String sSoId) {
         Criteria criteria = createEntityCriteria();
@@ -32,11 +47,19 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao{
         return user;
     }
 
+    /**
+     * This method saves user.
+     * @param user
+     */
     @Override
     public void saveUser(User user) {
         persistEntity(user);
     }
 
+    /**
+     * This method deletes user.
+     * @param sSoId
+     */
     @Override
     public void deleteBySso(String sSoId) {
         Criteria criteria = createEntityCriteria();
@@ -45,6 +68,10 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao{
         deleteEntity(user);
     }
 
+    /**
+     * This method makes the list of all users.
+     * @return users
+     */
     @Override
     @SuppressWarnings("unchecked")
     public List<User> findAllUsers() {

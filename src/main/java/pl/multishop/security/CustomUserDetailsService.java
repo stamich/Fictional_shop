@@ -15,12 +15,22 @@ import pl.multishop.service.UserService;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class belongs to the configuration of Spring Security.
+ * @author Michal Stawarski
+ */
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
     @Autowired
     private UserService userService;
 
+    /**
+     * This method loads user.
+     * @param ssoId
+     * @return
+     * @throws UsernameNotFoundException
+     */
     @Transactional(readOnly = true)
     public UserDetails loadUserByUsername(String ssoId)
             throws UsernameNotFoundException {
@@ -34,7 +44,11 @@ public class CustomUserDetailsService implements UserDetailsService {
                 true, true, true, true, getGrantedAuthorities(user));
     }
 
-
+    /**
+     * This method gets authorites.
+     * @param user
+     * @return
+     */
     private List<GrantedAuthority> getGrantedAuthorities(User user){
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 

@@ -7,21 +7,21 @@ import java.util.Set;
 import pl.multishop.model.Product;
 
 /**
- * Created by michal on 05.05.17.
+ * Interface of DAO layer for product model.
+ * @author Michał Stawarski
  */
+public interface ProductDao {
 
-public interface ProductDao // Interfejs warstwy danych
-{
-    public Product findById(int productId);
+    Product findById(int productId);
 
-    public Product findByName(String productName);
+    Product findByName(String productName);
 
-    public void saveProduct(Product product);
+    void saveProduct(Product product);
 
-    public void delProductById(int productId);
+    void delProductById(int productId);
 
-    public List<Product> findAllProducts();
+    List<Product> findAllProducts();
 
-    public Product findProductsByCategory(String productCategory);
+    Product findProductsByCategory(String productCategory);
 
 }
