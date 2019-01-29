@@ -14,7 +14,7 @@ import java.util.List;
  * @author Michał Stawarski
  */
 @Repository("orderDao")
-public class OrderDaoImpl extends AbstractDao<Integer, Order> implements OrderDao {
+public class OrderDaoImpl extends AbstractDao<Long, Order> implements OrderDao {
 
     /**
      * This method finds order.
@@ -22,7 +22,7 @@ public class OrderDaoImpl extends AbstractDao<Integer, Order> implements OrderDa
      * @return getById(orderId)
      */
     @Override
-    public Order findById(int orderId) {
+    public Order findById(Long orderId) {
         return getById(orderId);
     }
 
@@ -32,7 +32,7 @@ public class OrderDaoImpl extends AbstractDao<Integer, Order> implements OrderDa
      * @return (Order) criteria.uniqueResult()
      */
     @Override
-    public Order findByClientId(String clientId) {
+    public Order findByClientId(Long clientId) {
         Criteria criteria = createEntityCriteria();
         criteria.add(Restrictions.eq("clientId", clientId));
         return (Order) criteria.uniqueResult();

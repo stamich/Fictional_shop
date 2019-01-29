@@ -10,14 +10,10 @@ import java.util.List;
  */
 public interface OrderDao {
 
-    Order findById(int orderId);
-
-    Order findByClientId(String clientId);
-
+    Order findById(Long orderId);
+    Order findByClientId(Long clientId);
     void saveOrder(Order order);
-
     void delOrderById(int orderId);
-
     List<Order> findAllOrders();
 
 }

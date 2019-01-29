@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ClientDao {
 
-    public Client findById(int clientId);
+    public Client findById(Long clientId);
 
     public Client findBySurname(String clientSurname);
 

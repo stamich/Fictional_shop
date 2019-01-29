@@ -26,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
      * @return orderDao.findById(orderId)
      */
     @Override
-    public Order findById(int orderId) {
+    public Order findById(Long orderId) {
         return orderDao.findById(orderId);
     }
 
@@ -36,7 +36,7 @@ public class OrderServiceImpl implements OrderService {
      * @return orderDao.findByClientId(clientId)
      */
     @Override
-    public Order findByClientId(String clientId) {
+    public Order findByClientId(Long clientId) {
         return orderDao.findByClientId(clientId);
     }
 
@@ -61,8 +61,8 @@ public class OrderServiceImpl implements OrderService {
             //entity.setClientId(order.getClientId());//updatable = false
             //entity.setProductId(order.getProductId());//updatable = false
             entity.setAmount(order.getAmount());
-            entity.setOrderDate(order.getOrderDate());
-            entity.setOrderStatus(order.getOrderStatus());
+            entity.setCreatedAt(order.getCreatedAt());
+            entity.setStatus(order.getStatus());
         }
     }
 
@@ -91,8 +91,8 @@ public class OrderServiceImpl implements OrderService {
      * @return (orders == null || (orderId != null) && orders.getOrderId() == orderId)
      */
     @Override
-    public boolean isOrderNumberUnique(Integer orderId, String clientId){
+    public boolean isOrderNumberUnique(Long orderId, Long clientId){
         Order order = findByClientId(clientId);
-        return (order == null || (orderId != null) && order.getOrderId() == orderId);
+        return (order == null || (orderId != null) && order.getId() == orderId);
     }
 }

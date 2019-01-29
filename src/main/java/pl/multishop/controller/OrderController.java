@@ -87,7 +87,7 @@ public class OrderController {
      * @return addOrder
      */
     @RequestMapping(value = { "/edit-{orderId}-order" }, method = RequestMethod.GET)
-    public String editOrder(@PathVariable int orderId, ModelMap modelMap){
+    public String editOrder(@PathVariable Long orderId, ModelMap modelMap){
         Order order = orderService.findById(orderId);
         modelMap.addAttribute("orders", order);
         modelMap.addAttribute("edit", true);

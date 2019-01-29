@@ -9,10 +9,10 @@ import pl.multishop.model.Client;
 import java.util.List;
 
 @Repository("clientDao")
-public class ClientDaoImpl extends AbstractDao<Integer, Client> implements ClientDao{
+public class ClientDaoImpl extends AbstractDao<Long, Client> implements ClientDao{
 
     @Override
-    public Client findById(int clientId) {
+    public Client findById(Long clientId) {
         return getById(clientId);
     }
 

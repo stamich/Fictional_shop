@@ -10,17 +10,11 @@ import java.util.List;
  */
 public interface OrderService {
 
-    Order findById(int orderId);
-
-    Order findByClientId(String clientId);
-
+    Order findById(Long orderId);
+    Order findByClientId(Long clientId);
     void saveOrder(Order order);
-
     void updateOrder(Order order);
-
     void delOrderById(int orderId);
-
     List<Order> findAllOrders();
-
-    boolean isOrderNumberUnique(Integer orderId, String clientId);
+    boolean isOrderNumberUnique(Long orderId, Long clientId);
 }

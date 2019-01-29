@@ -1,8 +1,6 @@
 package pl.multishop.dao;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import pl.multishop.model.Product;
 
@@ -13,15 +11,10 @@ import pl.multishop.model.Product;
 public interface ProductDao {
 
     Product findById(int productId);
-
     Product findByName(String productName);
-
     void saveProduct(Product product);
-
     void delProductById(int productId);
-
     List<Product> findAllProducts();
-
     Product findProductsByCategory(String productCategory);
 
 }

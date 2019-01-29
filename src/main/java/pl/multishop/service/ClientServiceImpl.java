@@ -17,7 +17,7 @@ public class ClientServiceImpl implements ClientService {
     private ClientDao clientDao;
 
     @Override
-    public Client findById(int clientId) {
+    public Client findById(Long clientId) {
         return clientDao.findById(clientId);
     }
 
@@ -33,16 +33,17 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void updateClient(Client client) {
-        Client entity = clientDao.findById(client.getClientId());
+        Client entity = clientDao.findById(client.getId());
         if(entity!=null){
             //entity.setClientId(client.getClientId()); //updatable = false
-            entity.setClientName(client.getClientName());
-            entity.setClientSurname(client.getClientSurname());
-            entity.setClientAdress(client.getClientAdress());
-            entity.setClientCity(client.getClientCity());
-            entity.setClientCountry(client.getClientCountry());
-            entity.setClientEmail(client.getClientEmail());
-            entity.setClientPhone(client.getClientPhone());
+            entity.setFirstName(client.getFirstName());
+            entity.setLastName(client.getLastName());
+            entity.setHomeAdress(client.getHomeAdress());
+            entity.setShippingAdress(client.getShippingAdress());
+            entity.setCity(client.getCity());
+            entity.setCountry(client.getCountry());
+            entity.setEmail(client.getEmail());
+            entity.setPhone(client.getPhone());
         }
     }
 
