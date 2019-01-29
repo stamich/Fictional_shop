@@ -1,114 +1,134 @@
 package pl.multishop.model;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "klient")
-public class Client {
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "CLIENT")
+public class Client extends AbstractDomainObject<Long>{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "numer_klienta", nullable = false, unique = true, updatable = false)
-    private int clientId;
+    @Column(name = "CLIENT_ID", nullable = false, unique = true, updatable = false)
+    private Long id;
 
-    @Column(name = "imie_klienta", nullable = false)
-    private String clientName;
+    @Column(name = "FIRST_NAME", nullable = false)
+    private String firstName;
 
-    @Column(name = "nazwisko_klienta", nullable = false)
-    private String clientSurname;
+    @Column(name = "LAST_NAME", nullable = false)
+    private String lastName;
 
-    @Column(name = "adres_klienta", nullable = false)
-    private String clientAdress;
+    @Column(name = "HOME_ADRESS", nullable = false)
+    private String homeAdress;
 
-    @Column(name = "miasto", nullable = false)
-    private String clientCity;
+    @Column(name = "SHIPPING_ADRESS")
+    private String shippingAdress;
 
-    @Column(name = "kraj", nullable = false)
-    private String clientCountry;
+    @Column(name = "CITY", nullable = false)
+    private String city;
 
-    @Column(name = "email", nullable = false)
-    private String clientEmail;
+    @Column(name = "COUNTRY", nullable = false)
+    private String country;
 
-    @Column(name = "telefon", nullable = false)
-    private String clientPhone;
+    @Column(name = "EMAIL", nullable = false)
+    private String email;
+
+    @Column(name = "PHONE", nullable = false)
+    private String phone;
+
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
+    private Set<Order> orders = new HashSet<>();
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients")
-    private Set<Product> products = new HashSet<Product>(0);
+    private Set<Product> products = new HashSet<>(0);
 
-    public Client(){
-        super();
+    //
+
+    @Override
+    public Long getId() {
+        return id;
     }
 
-    public Client(String clientName, String clientSurname, Set<Product> products) {
-        this.clientName = clientName;
-        this.clientSurname = clientSurname;
-        this.products = products;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public int getClientId() {
-        return clientId;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setClientId(int clientId) {
-        this.clientId = clientId;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getClientName() {
-        return clientName;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setClientName(String clientName) {
-        this.clientName = clientName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public String getClientSurname() {
-        return clientSurname;
+    public String getHomeAdress() {
+        return homeAdress;
     }
 
-    public void setClientSurname(String clientSurname) {
-        this.clientSurname = clientSurname;
+    public void setHomeAdress(String homeAdress) {
+        this.homeAdress = homeAdress;
     }
 
-    public String getClientAdress() {
-        return clientAdress;
+    public String getShippingAdress() {
+        return shippingAdress;
     }
 
-    public void setClientAdress(String clientAdress) {
-        this.clientAdress = clientAdress;
+    public void setShippingAdress(String shippingAdress) {
+        this.shippingAdress = shippingAdress;
     }
 
-    public String getClientCity() {
-        return clientCity;
+    public String getCity() {
+        return city;
     }
 
-    public void setClientCity(String clientCity) {
-        this.clientCity = clientCity;
+    public void setCity(String city) {
+        this.city = city;
     }
 
-    public String getClientCountry() {
-        return clientCountry;
+    public String getCountry() {
+        return country;
     }
 
-    public void setClientCountry(String clientCountry) {
-        this.clientCountry = clientCountry;
+    public void setCountry(String country) {
+        this.country = country;
     }
 
-    public String getClientEmail() {
-        return clientEmail;
+    public String getEmail() {
+        return email;
     }
 
-    public void setClientEmail(String clientEmail) {
-        this.clientEmail = clientEmail;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getClientPhone() {
-        return clientPhone;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setClientPhone(String clientPhone) {
-        this.clientPhone = clientPhone;
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 
     public Set<Product> getProducts() {
@@ -119,27 +139,10 @@ public class Client {
         this.products = products;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Client client = (Client) o;
-
-        return clientId == client.clientId;
-    }
+    //
 
     @Override
-    public int hashCode() {
-        return clientId;
-    }
-
-    @Override
-    public String toString() {
-        return "Client{" +
-                "clientId=" + clientId +
-                ", clientName='" + clientName + '\'' +
-                ", clientSurname='" + clientSurname + '\'' +
-                '}';
+    public String print() {
+        return null;
     }
 }

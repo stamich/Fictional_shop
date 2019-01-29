@@ -49,15 +49,15 @@
             <td>Numer zamówienia</td><td>Numer klienta</td><td>Numer produktu</td><td>Kwota</td><td>Data</td><td>Status</td><td>Usuwanie</td>
         </tr>
         </tfoot>
-        <c:forEach items="${orders}" var="order">
+        <c:forEach items="${order}" var="order">
             <tr>
-                <td><a href="<c:url value='/edit-${orders.orderId}-order' />">${orders.orderId}</a></td>
-                <td>${orders.clientId}</td>
-                <td>${orders.productId}</td>
-                <td>${orders.amount}</td>
-                <td>${orders.orderDate}</td>
-                <td>${orders.orderStatus}</td>
-                <td><a href="<c:url value='/delete-${orders.orderId}-order' />">Usuń</a></td>
+                <td><a href="<c:url value='/edit-${order.orderId}-order' />">${order.orderId}</a></td>
+                <td>${order.clientId}</td>
+                <td>${order.productId}</td>
+                <td>${order.amount}</td>
+                <td>${order.orderDate}</td>
+                <td>${order.orderStatus}</td>
+                <td><a href="<c:url value='/delete-${order.orderId}-order' />">Usuń</a></td>
             </tr>
         </c:forEach>
     </table>

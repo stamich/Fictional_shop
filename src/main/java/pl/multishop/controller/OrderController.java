@@ -9,7 +9,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import pl.multishop.model.Orders;
+import pl.multishop.model.Order;
 import pl.multishop.service.OrderService;
 
 import javax.validation.Valid;
@@ -36,7 +36,7 @@ public class OrderController {
      */
     @RequestMapping(value = { "/ordersList" }, method = RequestMethod.GET)
     public String listOrders(ModelMap modelMap) {
-        List<Orders> orders = orderService.findAllOrders();
+        List<Order> orders = orderService.findAllOrders();
         modelMap.addAttribute("orders", orders);
         return "orders";
     }
@@ -48,35 +48,35 @@ public class OrderController {
      */
     @RequestMapping(value = { "/newOrder" }, method = RequestMethod.GET)
     public String newOrder(ModelMap modelMap){
-        Orders orders = new Orders();
-        modelMap.addAttribute( "orders", orders);
+        Order order = new Order();
+        modelMap.addAttribute( "orders", order);
         modelMap.addAttribute("edit", false);
         return "creatingOrder";
     }
 
     /**
      * This method saves created order (REST - POST).
-     * @param orders
+     * @param order
      * @param bindingResult
      * @param modelMap
      * @return orderSuccess
      */
     @RequestMapping(value = { "/newOrder" }, method = RequestMethod.POST)
-    public String saveOrder(@Valid Orders orders, BindingResult bindingResult, ModelMap modelMap){
+    public String saveOrder(@Valid Order order, BindingResult bindingResult, ModelMap modelMap){
 
         if(bindingResult.hasErrors()){
             return "addOrder";
         }
 
-        if(!orderService.isOrderNumberUnique(orders.getOrderId(), orders.getClientId())){
-            FieldError clientIdError = new FieldError("orders", "clientId",
-                    messageSource.getMessage("non.unique.clientId", new String[]{orders.getClientId()}, Locale.getDefault()));
-            bindingResult.addError(clientIdError);
-            return "addOrder";
-        }
+//        if(!orderService.isOrderNumberUnique(order.getId(), order.getClient()))){
+//            FieldError clientIdError = new FieldError("order", "clientId",
+//                    messageSource.getMessage("non.unique.clientId", new String[]{order.getClientId()}, Locale.getDefault()));
+//            bindingResult.addError(clientIdError);
+//            return "addOrder";
+//        }
 
-        orderService.saveOrder(orders);
-        modelMap.addAttribute("success", "Zamowienie numer " + orders.getOrderId() + " zapisane pomyslnie!");
+        orderService.saveOrder(order);
+        modelMap.addAttribute("success", "Zamowienie numer " + order.getId() + " zapisane pomyslnie!");
         return "orderSuccess";
     }
 
@@ -88,36 +88,36 @@ public class OrderController {
      */
     @RequestMapping(value = { "/edit-{orderId}-order" }, method = RequestMethod.GET)
     public String editOrder(@PathVariable int orderId, ModelMap modelMap){
-        Orders orders = orderService.findById(orderId);
-        modelMap.addAttribute("orders", orders);
+        Order order = orderService.findById(orderId);
+        modelMap.addAttribute("orders", order);
         modelMap.addAttribute("edit", true);
         return "addOrder";
     }
 
     /**
      * This method allows to update order properties (REST - POST).
-     * @param orders
+     * @param order
      * @param bindingResult
      * @param modelMap
      * @param orderId
      * @return orderSuccess
      */
     @RequestMapping(value = { "/edit-{orderId}-order" }, method = RequestMethod.POST)
-    public String updateOrder(@Valid Orders orders, BindingResult bindingResult, ModelMap modelMap, @PathVariable int orderId){
+    public String updateOrder(@Valid Order order, BindingResult bindingResult, ModelMap modelMap, @PathVariable int orderId){
 
         if(bindingResult.hasErrors()){
             return "addOrder";
         }
 
-        if(!orderService.isOrderNumberUnique(orders.getOrderId(), orders.getClientId())){
-            FieldError clientIdError = new FieldError("orders", "clientId",
-                    messageSource.getMessage("non.unique.clientId", new String[]{orders.getClientId()}, Locale.getDefault()));
-            bindingResult.addError(clientIdError);
-            return "addOrder";
-        }
+//        if(!orderService.isOrderNumberUnique(order.getOrderId(), order.getClientId())){
+//            FieldError clientIdError = new FieldError("order", "clientId",
+//                    messageSource.getMessage("non.unique.clientId", new String[]{order.getClientId()}, Locale.getDefault()));
+//            bindingResult.addError(clientIdError);
+//            return "addOrder";
+//        }
 
-        orderService.saveOrder(orders);
-        modelMap.addAttribute("success", "Zamowienie numer " + orders.getOrderId() + " zmienione pomyslnie!");
+        orderService.saveOrder(order);
+        modelMap.addAttribute("success", "Zamowienie numer " + order.getId() + " zmienione pomyslnie!");
         return "orderSuccess";
     }
 

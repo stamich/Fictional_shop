@@ -21,8 +21,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pl.multishop.dao.OrderDao;
-import pl.multishop.model.Orders;
-import pl.multishop.service.OrderServiceImpl;
+import pl.multishop.model.Order;
 
 public class OrderServiceImplTest {
 
@@ -33,40 +32,40 @@ public class OrderServiceImplTest {
     OrderServiceImpl orderService;
 
     @Spy
-    List<Orders> orderss = new ArrayList<Orders>();
+    List<Order> ordersses = new ArrayList<Order>();
 
     @BeforeClass
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        orderss = getOrdersList();
+        ordersses = getOrdersList();
     }
 
     @Test
     public void findById(){
-        Orders orders = orderss.get(0);
-        when(orderDao.findById(anyInt())).thenReturn(orders);
-        Assert.assertEquals(orderService.findById(orders.getOrderId()), orders);
+        Order order = ordersses.get(0);
+        when(orderDao.findById(anyInt())).thenReturn(order);
+        Assert.assertEquals(orderService.findById(order.getOrderId()), order);
     }
 
     @Test
     public void findOrderByClientId(){
-        Orders orders = orderss.get(0);
-        when(orderDao.findByClientId(anyString())).thenReturn(orders);
-        Assert.assertEquals(orderService.findByClientId(anyString()), orders);
+        Order order = ordersses.get(0);
+        when(orderDao.findByClientId(anyString())).thenReturn(order);
+        Assert.assertEquals(orderService.findByClientId(anyString()), order);
     }
 
     @Test
     public void saveOrder(){
-        doNothing().when(orderDao).saveOrder(any(Orders.class));
-        orderService.saveOrder(any(Orders.class));
-        verify(orderDao, atLeastOnce()).saveOrder(any(Orders.class));
+        doNothing().when(orderDao).saveOrder(any(Order.class));
+        orderService.saveOrder(any(Order.class));
+        verify(orderDao, atLeastOnce()).saveOrder(any(Order.class));
     }
 
     @Test
     public void updateOrder(){
-        Orders orders = orderss.get(0);
-        when(orderDao.findById(anyInt())).thenReturn(orders);
-        orderService.updateOrder(orders);
+        Order order = ordersses.get(0);
+        when(orderDao.findById(anyInt())).thenReturn(order);
+        orderService.updateOrder(order);
         verify(orderDao, atLeastOnce()).findById(anyInt());
     }
 
@@ -79,20 +78,20 @@ public class OrderServiceImplTest {
 
     @Test
     public void findAllOrders(){
-        when(orderDao.findAllOrders()).thenReturn(orderss);
-        Assert.assertEquals(orderService.findAllOrders(), orderss);
+        when(orderDao.findAllOrders()).thenReturn(ordersses);
+        Assert.assertEquals(orderService.findAllOrders(), ordersses);
     }
 
     @Test
     public void isOrderNumberUnique(){
-        Orders orders = orderss.get(0);
-        when(orderDao.findByClientId(anyString())).thenReturn(orders);
-        Assert.assertEquals(orderService.isOrderNumberUnique(orders.getOrderId(), orders.getClientId()), true);
+        Order order = ordersses.get(0);
+        when(orderDao.findByClientId(anyString())).thenReturn(order);
+        Assert.assertEquals(orderService.isOrderNumberUnique(order.getOrderId(), order.getClientId()), true);
     }
 
-    public List<Orders> getOrdersList(){
+    public List<Order> getOrdersList(){
 
-        Orders o1 = new Orders();
+        Order o1 = new Order();
         LocalDate date = LocalDate.now();
 
         o1.setOrderId(1);
@@ -102,7 +101,7 @@ public class OrderServiceImplTest {
         o1.setOrderDate(date);
         o1.setOrderStatus("Send");
 
-        Orders o2 = new Orders();
+        Order o2 = new Order();
 
         o1.setOrderId(2);
         o1.setClientId("1002");
@@ -111,9 +110,9 @@ public class OrderServiceImplTest {
         o1.setOrderDate(date);
         o1.setOrderStatus("Prepared");
 
-        orderss.add(o1);
-        orderss.add(o2);
-        return orderss;
+        ordersses.add(o1);
+        ordersses.add(o2);
+        return ordersses;
     }
 
 }

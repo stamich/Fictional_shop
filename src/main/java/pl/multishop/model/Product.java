@@ -43,7 +43,7 @@ public class Product {
     private boolean active;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
-    @JoinTable(name = "zamowienie", joinColumns = { @JoinColumn(name = "numer_produktu") }, inverseJoinColumns = { @JoinColumn(name = "numer_klienta") })
+    @JoinTable(name = "order", joinColumns = { @JoinColumn(name = "product_id") }, inverseJoinColumns = { @JoinColumn(name = "client_id") })
     private Set<Client> clients = new HashSet<Client>(0);
 
     public Product() {

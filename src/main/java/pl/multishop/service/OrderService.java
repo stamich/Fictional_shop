@@ -1,6 +1,6 @@
 package pl.multishop.service;
 
-import pl.multishop.model.Orders;
+import pl.multishop.model.Order;
 
 import java.util.List;
 
@@ -10,17 +10,17 @@ import java.util.List;
  */
 public interface OrderService {
 
-    Orders findById(int orderId);
+    Order findById(int orderId);
 
-    Orders findByClientId(String clientId);
+    Order findByClientId(String clientId);
 
-    void saveOrder(Orders orders);
+    void saveOrder(Order order);
 
-    void updateOrder(Orders orders);
+    void updateOrder(Order order);
 
     void delOrderById(int orderId);
 
-    List<Orders> findAllOrders();
+    List<Order> findAllOrders();
 
     boolean isOrderNumberUnique(Integer orderId, String clientId);
 }

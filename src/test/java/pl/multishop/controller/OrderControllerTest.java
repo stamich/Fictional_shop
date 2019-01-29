@@ -10,8 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pl.multishop.controller.OrderController;
-import pl.multishop.model.Orders;
+import pl.multishop.model.Order;
 import pl.multishop.service.OrderService;
 
 import java.time.LocalDate;
@@ -33,7 +32,7 @@ public class OrderControllerTest {
     OrderController orderController ;
 
     @Spy
-    List<Orders> orderss = new ArrayList<Orders>();
+    List<Order> ordersses = new ArrayList<Order>();
 
     @Spy
     ModelMap modelMap;
@@ -44,14 +43,14 @@ public class OrderControllerTest {
     @BeforeClass
     public void setUp(){
         MockitoAnnotations.initMocks(this);
-        orderss = getOrdersList();
+        ordersses = getOrdersList();
     }
 
     @Test
     public void listOrders(){
-        when(orderService.findAllOrders()).thenReturn(orderss);
+        when(orderService.findAllOrders()).thenReturn(ordersses);
         Assert.assertEquals(orderController.listOrders(modelMap), "orders");
-        Assert.assertEquals(modelMap.get("orders"), orderss);
+        Assert.assertEquals(modelMap.get("orders"), ordersses);
         verify(orderService, atLeastOnce()).findAllOrders();
     }
 
@@ -60,62 +59,62 @@ public class OrderControllerTest {
         Assert.assertEquals(orderController.newOrder(modelMap), "creatingOrder");
         Assert.assertNotNull(modelMap.get("orders"));
         Assert.assertFalse((Boolean)modelMap.get("edit"));
-        Assert.assertEquals(((Orders)modelMap.get("orders")).getOrderId(), 0);
+        Assert.assertEquals(((Order)modelMap.get("orders")).getOrderId(), 0);
     }
 
     @Test
     public void saveOrderWithValidationError(){
         when(bindingResult.hasErrors()).thenReturn(true);
-        doNothing().when(orderService).saveOrder(any(Orders.class));
-        Assert.assertEquals(orderController.saveOrder(orderss.get(0), bindingResult, modelMap), "addOrder");
+        doNothing().when(orderService).saveOrder(any(Order.class));
+        Assert.assertEquals(orderController.saveOrder(ordersses.get(0), bindingResult, modelMap), "addOrder");
     }
 
     @Test
     public void saveOrderWithValidationErrorNonUniqueSSN(){
         when(bindingResult.hasErrors()).thenReturn(false);
         when(orderService.isOrderNumberUnique(anyInt(), anyString())).thenReturn(false);
-        Assert.assertEquals(orderController.saveOrder(orderss.get(0), bindingResult, modelMap), "addOrder");
+        Assert.assertEquals(orderController.saveOrder(ordersses.get(0), bindingResult, modelMap), "addOrder");
     }
 
     @Test
     public void saveOrderWithSuccess(){
         when(bindingResult.hasErrors()).thenReturn(false);
         when(orderService.isOrderNumberUnique(anyInt(), anyString())).thenReturn(true);
-        doNothing().when(orderService).saveOrder(any(Orders.class));
-        Assert.assertEquals(orderController.saveOrder(orderss.get(0), bindingResult, modelMap), "orderSuccess");
+        doNothing().when(orderService).saveOrder(any(Order.class));
+        Assert.assertEquals(orderController.saveOrder(ordersses.get(0), bindingResult, modelMap), "orderSuccess");
         Assert.assertEquals(modelMap.get("success"), "Zamowienie numer 2 zapisane pomyslnie!");
     }
 
     @Test
     public void editOrder(){
-        Orders orders = orderss.get(0);
-        when(orderService.findById(anyInt())).thenReturn(orders);
+        Order order = ordersses.get(0);
+        when(orderService.findById(anyInt())).thenReturn(order);
         Assert.assertEquals(orderController.editOrder(anyInt(), modelMap), "addOrder");
-        Assert.assertNotNull(modelMap.get("orders"));
+        Assert.assertNotNull(modelMap.get("order"));
         Assert.assertTrue((Boolean)modelMap.get("edit"));
-        Assert.assertEquals(((Orders)modelMap.get("orders")).getOrderId(), 2);
+        Assert.assertEquals(((Order)modelMap.get("order")).getOrderId(), 2);
     }
 
     @Test
     public void updateOrderWithValidationError(){
         when(bindingResult.hasErrors()).thenReturn(true);
-        doNothing().when(orderService).updateOrder(any(Orders.class));
-        Assert.assertEquals(orderController.updateOrder(orderss.get(0), bindingResult, modelMap,1), "addOrder");
+        doNothing().when(orderService).updateOrder(any(Order.class));
+        Assert.assertEquals(orderController.updateOrder(ordersses.get(0), bindingResult, modelMap,1), "addOrder");
     }
 
     @Test
     public void updateOrderWithValidationErrorNonUniqueNumber(){
         when(bindingResult.hasErrors()).thenReturn(false);
         when(orderService.isOrderNumberUnique(anyInt(), anyString())).thenReturn(false);
-        Assert.assertEquals(orderController.updateOrder(orderss.get(0), bindingResult, modelMap,1), "addOrder");
+        Assert.assertEquals(orderController.updateOrder(ordersses.get(0), bindingResult, modelMap,1), "addOrder");
     }
 
     @Test
     public void updateOrderWithSuccess(){
         when(bindingResult.hasErrors()).thenReturn(false);
         when(orderService.isOrderNumberUnique(anyInt(), anyString())).thenReturn(true);
-        doNothing().when(orderService).updateOrder(any(Orders.class));
-        Assert.assertEquals(orderController.updateOrder(orderss.get(0), bindingResult, modelMap, 1), "orderSuccess");
+        doNothing().when(orderService).updateOrder(any(Order.class));
+        Assert.assertEquals(orderController.updateOrder(ordersses.get(0), bindingResult, modelMap, 1), "orderSuccess");
         Assert.assertEquals(modelMap.get("success"), "Zamowienie numer 2 zmienione pomyslnie!");
     }
 
@@ -125,9 +124,9 @@ public class OrderControllerTest {
         Assert.assertEquals(orderController.deleteOrder(1), "redirect:/orderList");
     }
 
-    public List<Orders> getOrdersList(){
+    public List<Order> getOrdersList(){
 
-        Orders o1 = new Orders();
+        Order o1 = new Order();
         LocalDate date = LocalDate.now();
 
         o1.setOrderId(1);
@@ -137,7 +136,7 @@ public class OrderControllerTest {
         o1.setOrderDate(date);
         o1.setOrderStatus("Send");
 
-        Orders o2 = new Orders();
+        Order o2 = new Order();
 
         o1.setOrderId(2);
         o1.setClientId("1002");
@@ -146,9 +145,9 @@ public class OrderControllerTest {
         o1.setOrderDate(date);
         o1.setOrderStatus("Prepared");
 
-        orderss.add(o1);
-        orderss.add(o2);
-        return orderss;
+        ordersses.add(o1);
+        ordersses.add(o2);
+        return ordersses;
     }
 
 }

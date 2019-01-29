@@ -5,8 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import pl.multishop.dao.OrderDao;
-import pl.multishop.model.Orders;
-import pl.multishop.model.Product;
+import pl.multishop.model.Order;
 
 import java.util.List;
 
@@ -27,7 +26,7 @@ public class OrderServiceImpl implements OrderService {
      * @return orderDao.findById(orderId)
      */
     @Override
-    public Orders findById(int orderId) {
+    public Order findById(int orderId) {
         return orderDao.findById(orderId);
     }
 
@@ -37,33 +36,33 @@ public class OrderServiceImpl implements OrderService {
      * @return orderDao.findByClientId(clientId)
      */
     @Override
-    public Orders findByClientId(String clientId) {
+    public Order findByClientId(String clientId) {
         return orderDao.findByClientId(clientId);
     }
 
     /**
      * This method saves order.
-     * @param orders
+     * @param order
      */
     @Override
-    public void saveOrder(Orders orders) {
-        orderDao.saveOrder(orders);
+    public void saveOrder(Order order) {
+        orderDao.saveOrder(order);
     }
 
     /**
      * This method updates order.
-     * @param orders
+     * @param order
      */
     @Override
-    public void updateOrder(Orders orders) {
-        Orders entity = orderDao.findById(orders.getOrderId());
+    public void updateOrder(Order order) {
+        Order entity = orderDao.findById(order.getId());
         if(entity!=null) {
-            //entity.setOrderId(orders.getOrderId());//updatable = false
-            //entity.setClientId(orders.getClientId());//updatable = false
-            //entity.setProductId(orders.getProductId());//updatable = false
-            entity.setAmount(orders.getAmount());
-            entity.setOrderDate(orders.getOrderDate());
-            entity.setOrderStatus(orders.getOrderStatus());
+            //entity.setOrderId(order.getOrderId());//updatable = false
+            //entity.setClientId(order.getClientId());//updatable = false
+            //entity.setProductId(order.getProductId());//updatable = false
+            entity.setAmount(order.getAmount());
+            entity.setOrderDate(order.getOrderDate());
+            entity.setOrderStatus(order.getOrderStatus());
         }
     }
 
@@ -81,7 +80,7 @@ public class OrderServiceImpl implements OrderService {
      * @return orderDao.findAllOrders()
      */
     @Override
-    public List<Orders> findAllOrders() {
+    public List<Order> findAllOrders() {
         return orderDao.findAllOrders();
     }
 
@@ -93,7 +92,7 @@ public class OrderServiceImpl implements OrderService {
      */
     @Override
     public boolean isOrderNumberUnique(Integer orderId, String clientId){
-        Orders orders = findByClientId(clientId);
-        return (orders == null || (orderId != null) && orders.getOrderId() == orderId);
+        Order order = findByClientId(clientId);
+        return (order == null || (orderId != null) && order.getOrderId() == orderId);
     }
 }

@@ -5,6 +5,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
@@ -15,13 +17,10 @@ import java.lang.reflect.ParameterizedType;
  * @param <PK>
  * @param <T>
  */
-public abstract class AbstractDao<PK extends Serializable, T> {
+public abstract class AbstractDao<PK extends Serializable, T> implements Serializable{
 
     private final Class<T> persistentClass;
 
-    /**
-     * Constructor.
-     */
     @SuppressWarnings("unchecked")
     public AbstractDao(){
         this.persistentClass = (Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
@@ -59,7 +58,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     }
 
     /**
-     * Metoda zachowująca encje.
+     * This method persists the object (entity).
      * @param entity
      */
     public void persistEntity(T entity) {
@@ -67,7 +66,7 @@ public abstract class AbstractDao<PK extends Serializable, T> {
     }
 
     /**
-     * This method persists the object (entity).
+     * This method updates the object (entity).
      * @param entity
      */
     public void updateEntity(T entity){
@@ -87,6 +86,12 @@ public abstract class AbstractDao<PK extends Serializable, T> {
      * @return getSession().createCriteria(persistentClass)
      */
     protected Criteria createEntityCriteria(){
-        return getSession().createCriteria(persistentClass);
+        CriteriaBuilder builder = getSession().getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(persistentClass);
+        return (Criteria) getSession().createQuery(query).getResultList();
     }
+
+//    protected Criteria createEntityCriteria(){
+//        return getSession().createCriteria(persistentClass);
+//    }
 }
