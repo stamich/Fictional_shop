@@ -2,6 +2,7 @@ package pl.multishop.config;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,6 +17,10 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
+import org.thymeleaf.templatemode.TemplateMode;
 import pl.multishop.converter.RoleToUserProfileConverter;
 
 /**
@@ -25,23 +30,30 @@ import pl.multishop.converter.RoleToUserProfileConverter;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "pl.multishop")
-public class ApplicationConfig extends WebMvcConfigurerAdapter {
+public class ApplicationConfig implements WebMvcConfigurer {
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Autowired
     RoleToUserProfileConverter roleToUserProfileConverter;
+
+    public void setApplicationContext(ApplicationContext applicationContext){
+        this.applicationContext = applicationContext;
+    }
 
     /**
      * This method configures the ViewResolver to deliver preferred views.
      * @return viewResolver
      */
-    @Bean
-    public ViewResolver viewResolver() {
-        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setViewClass(JstlView.class);
-        viewResolver.setPrefix("/WEB-INF/views/");
-        viewResolver.setSuffix(".jsp");
-        return viewResolver;
-    }
+//    @Bean
+//    public ViewResolver viewResolver() {
+//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+//        viewResolver.setViewClass(JstlView.class);
+//        viewResolver.setPrefix("/WEB-INF/views/");
+//        viewResolver.setSuffix(".jsp");
+//        return viewResolver;
+//    }
 
     /**
      * This method configures the MessageSource bean to lookup any validation/error message
@@ -115,4 +127,40 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter {
         TilesViewResolver viewResolver = new TilesViewResolver();
         registry.viewResolver(viewResolver);
     }*/
+
+    /**
+     * Thymeleaf framework configuration
+     * @return
+     */
+    @Bean
+    public ThymeleafViewResolver viewResolver(){
+        ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
+        viewResolver.setTemplateEngine(templateEngine());
+        viewResolver.setCharacterEncoding("UTF-8");
+        viewResolver.setOrder(1);
+        viewResolver.setViewNames(new String[] {"*.html", "*.xhtml"});
+        return viewResolver;
+    }
+
+
+    @Bean
+    public SpringResourceTemplateResolver templateResolver(){
+        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
+        templateResolver.setApplicationContext(this.applicationContext);
+        templateResolver.setPrefix("/WEB-INF/views/html/");
+        templateResolver.setSuffix(".html");
+        templateResolver.setTemplateMode(TemplateMode.HTML);
+        templateResolver.setCharacterEncoding("UTF-8");
+        templateResolver.setCacheable(false);
+        return templateResolver;
+    }
+
+
+    @Bean
+    public SpringTemplateEngine templateEngine(){
+        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+        templateEngine.setTemplateResolver(templateResolver());
+        templateEngine.setEnableSpringELCompiler(true);
+        return templateEngine;
+    }
 }
