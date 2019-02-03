@@ -1,10 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/bootstrap.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/app.css}">
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"  />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <title>Lista systemów</title>
 </head>
 <body>
+
+<div id="mainWrapper">
+    <header>
+        <h1 class="logo">Agreement manager</h1>
+        <h2 class="logo">Lista systemów</h2>
+    </header>
+
+    <div style="height: 5px;"></div>
+    <table id="table">
+        <thead>
+        <tr>
+            <th>Id Systemu</th>
+            <th>Nazwa Systemu</th>
+            <th>Opis Systemu</th>
+            <th>Opis Technologii</th>
+            <th>Numer Klienta</th>
+            <th>Nazwa Klienta</th>
+            <th>Uwagi</th>
+        </tr>
+        </thead>
+
+        <tbody >
+        <th:block th:each="system : ${systems}">
+            <th:block th:each="systemDictionary : ${systemDictionaries}">
+                <tr th:if="${!empty system.clients}">
+                    <th:block th:each="client : ${clients}">
+                        <td th:text="${system.systemId}"></td>
+                        <td th:text="${systemDictionary.systemName}"></td>
+                        <td th:text="${system.city}"></td>
+                        <td th:text="${system.street}"></td>
+                        <td th:text="${client.clientId}"></td>
+                        <td th:text="${client.clientName}"></td>
+                        <td th:text="${system.comments}"></td>
+                    </th:block>
+                </tr>
+            </th:block>
+        </th:block>
+        </tbody>
+
+        <tfoot>
+        <tr>
+            <th>Id Systemu</th>
+            <th>Nazwa Systemu</th>
+            <th>Opis Systemu</th>
+            <th>Opis Technologii</th>
+            <th>Numer Klienta</th>
+            <th>Nazwa Klienta</th>
+            <th>Uwagi</th>
+        </tr>
+        </tfoot>
+    </table>
+
+    <div style="height: 5px;"></div>
+    <table id="table2">
+        <thead>
+        <tr>
+            <th>Id Systemu</th>
+            <th>Nazwa Systemu</th>
+            <th>Opis Systemu</th>
+            <th>Opis Technologii</th>
+            <th>Uwagi</th>
+        </tr>
+        </thead>
+
+        <tbody >
+        <th:block th:each="system : ${systems}">
+            <th:block th:each="dictionary: ${systems.systemDictionaries}">
+                <tr>
+                    <td th:text="${system.systemId}"></td>
+                    <td th:text="${dictionary.systemName}"></td>
+                    <td th:text="${system.systemDescription}"></td>
+                    <td th:text="${system.technologyDescription}"></td>
+                    <td th:text="${system.comments}"></td>
+                </tr>
+            </th:block>
+        </th:block>
+        </tbody>
+
+        <tfoot>
+        <tr>
+            <th>Id Systemu</th>
+            <th>Nazwa Systemu</th>
+            <th>Opis Systemu</th>
+            <th>Opis Technologii</th>
+            <th>Uwagi</th>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+<script type="text/javascript" >
+    $(document).ready(function (){
+        $('#table').DataTable({
+        });
+    });
+</script>
+
+<script type="text/javascript" >
+    $(document).ready(function (){
+        $('#table2').DataTable({
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#button-1, #button-2, #button-3, #button-4, #button-5, #button-6, #button-7, #button-8, #button-9, #button-10").button();
+    });
+</script>
 
 </body>
 </html>

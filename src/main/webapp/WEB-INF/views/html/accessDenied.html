@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/bootstrap.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/app.css}">
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"  />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <title>Strona niedostępna</title>
 </head>
 <body>
+
+<div id="mainWrapper">
+    <header>
+        <h1> </h1>
+        <h1 class="logo">Agreement manager</h1>
+        <h2 class="forbidden">Strona niedostępna</h2>
+    </header>
+
+    <h1 class="forbidden">Oops... nie masz dostępu do tego zasobu.</h1>
+    <h2>Aby to zmienić skontaktuj się z administratorem.</h2>
+</div>
+
+<script type="text/javascript" >
+    $(document).ready(function (){
+        $('#table').DataTable({
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#button-1, #button-2, #button-3, #button-4, #button-5, #button-6, #button-7, #button-8, #button-9, #button-10").button();
+    });
+</script>
 
 </body>
 </html>

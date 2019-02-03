@@ -1,10 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/bootstrap.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/app.css}">
+
+    <link rel="stylesheet" type="text/css" href="http://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="https://code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css"  />
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <script type="text/javascript" src="http://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <title>Indeks aplikacji</title>
 </head>
 <body>
+
+<header>
+    <h1 class="logo">Multishop</h1>
+    <h2 class="logo">Indeks aplikacji</h2>
+</header>
+
+<tr>
+    <div class="menu-container">
+        <div class="menu-card">
+            <div class="menu-form">
+                <div id="button-1">
+                    <form action="/agreements/all">
+                        <th><input type="submit" value="Umowy"></th>
+                    </form>
+                </div>
+                <br>
+                <div id="button-2">
+                    <form action="/systems/all">
+                        <th><input type="submit" value="Systemy"></th>
+                    </form>
+                </div>
+                <br>
+                <div id="button-3">
+                    <form action="/clients/all">
+                        <th><input type="submit" value="Klienci"></th>
+                    </form>
+                </div>
+                <br>
+                <div id="button-4">
+                    <form action="/files/upload">
+                        <th><input type="submit" value="Upload plików"></th>
+                    </form>
+                </div>
+                <br>
+                <div id="button-5">
+                    <form action="/description">
+                        <th><input type="submit" value="O aplikacji"></th>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-card2">
+            <div class="menu-form">
+                <div id="button-6">
+                    <form action="/add">
+                        <th><input type="submit" value="Dodawanie"></th>
+                    </form>
+                </div>
+                <br>
+                <div id="button-7">
+                    <form action="/update">
+                        <th><input type="submit" value="Uaktualnianie"></th>
+                    </form>
+                </div>
+                <br>
+                <div id="button-8">
+                    <form action="/deactivate">
+                        <th><input type="submit" value="Dezaktywacja"></th>
+                    </form>
+                </div>
+                <br>
+                <div id="button-9">
+                    <form action="/delete">
+                        <th><input type="submit" value="Usuwanie"></th>
+                    </form>
+                </div>
+                <br>
+                <div id="button-10">
+                    <form action="/usersList">
+                        <th><input type="submit" value="Użytkownicy"></th>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</tr>
+</div>
+
+<script type="text/javascript" >
+    $(document).ready(function (){
+        $('#table').DataTable({
+        });
+    });
+</script>
+
+<script type="text/javascript" >
+    $(document).ready(function (){
+        $('#table2').DataTable({
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#button-1, #button-2, #button-3, #button-4, #button-5, #button-6, #button-7, #button-8, #button-9, #button-10").button();
+    });
+</script>
 
 </body>
 </html>

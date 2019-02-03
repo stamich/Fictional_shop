@@ -1,10 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/bootstrap.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/app.css}">
+
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+    <title>Potwierdzenie rejestracji</title>
 </head>
 <body>
+
+<div class="generic-container">
+    <%@include file="authheader.jsp" %>
+
+    <div class="alert alert-success lead">
+        ${success}
+    </div>
+
+    <span class="well floatRight">
+			Go to <a href="<c:url value='/list' />">Lista użytkowników</a>
+		</span>
+</div>
 
 </body>
 </html>
