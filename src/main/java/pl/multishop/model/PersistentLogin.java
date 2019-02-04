@@ -11,16 +11,16 @@ import java.util.Date;
  * @version 1.0
  */
 @Entity
-@Table(name = "persistent_logins")
+@Table(name = "PERSISTENT_LOGIN")
 public class PersistentLogin implements Serializable {
 
     @Id
     private String series;
 
-    @Column(name = "username", unique = true, nullable = false)
+    @Column(name = "USERNAME", unique = true, nullable = false)
     private String userName;
 
-    @Column(name = "token", unique = true, nullable = false)
+    @Column(name = "TOKEN", unique = true, nullable = false)
     private String token;
 
     @Temporal(TemporalType.TIMESTAMP)

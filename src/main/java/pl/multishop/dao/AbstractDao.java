@@ -11,13 +11,13 @@ import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
 
 /**
- * The abstract class implemented Serializable interface for
+ * This abstract class implements Serializable interface for
  * serializing Domain Access Objects(DAO).
  * @author Michał Stawarski
  * @param <PK>
  * @param <T>
  */
-public abstract class AbstractDao<PK extends Serializable, T> implements Serializable{
+public abstract class AbstractDao <PK extends Serializable, T> {
 
     private final Class<T> persistentClass;
 

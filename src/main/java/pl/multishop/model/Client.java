@@ -11,6 +11,7 @@ import java.util.Set;
 @DynamicInsert
 @DynamicUpdate
 @Table(name = "CLIENT")
+@SuppressWarnings("serial")
 public class Client extends AbstractDomainObject<Long>{
 
     @Id
@@ -47,8 +48,6 @@ public class Client extends AbstractDomainObject<Long>{
 
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients")
     private Set<Product> products = new HashSet<>(0);
-
-    //
 
     @Override
     public Long getId() {
@@ -139,10 +138,8 @@ public class Client extends AbstractDomainObject<Long>{
         this.products = products;
     }
 
-    //
-
     @Override
     public String print() {
-        return null;
+        return "Client: " + getId() + " Name: " + getLastName();
     }
 }

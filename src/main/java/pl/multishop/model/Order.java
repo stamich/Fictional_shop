@@ -1,7 +1,9 @@
 package pl.multishop.model;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
-import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,7 +13,10 @@ import java.util.Set;
  * @version 1.0
  */
 @Entity
+@DynamicInsert
+@DynamicUpdate
 @Table(name = "ORDER")
+@SuppressWarnings("serial")
 public class Order extends AbstractDomainObject<Long>{
 
     @Id
@@ -19,17 +24,8 @@ public class Order extends AbstractDomainObject<Long>{
     @Column(name = "ORDER_ID", nullable = false, unique = true, updatable = false)
     private Long id;
 
-//    @Column(name = "numer_klienta", nullable = false, unique = true, updatable = false)
-//    private String clientId;
-//
-//    @Column(name = "numer_produktu", nullable = false, unique = true, updatable = false)
-//    private int productId;
-
     @Column(name = "AMOUNT", nullable = false)
     private double amount;
-
-//    @Column(name = "data_zamowienia", nullable = false)
-//    private LocalDate orderDate;
 
     @Column(name = "COMMENTS")
     private String comments;
@@ -43,8 +39,6 @@ public class Order extends AbstractDomainObject<Long>{
 
     @ManyToMany(mappedBy = "orders", fetch = FetchType.LAZY)
     private Set<Product> products = new HashSet<>();
-
-    //
 
     @Override
     public Long getId() {
@@ -61,6 +55,14 @@ public class Order extends AbstractDomainObject<Long>{
 
     public void setAmount(double amount) {
         this.amount = amount;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public String getStatus() {
@@ -87,50 +89,8 @@ public class Order extends AbstractDomainObject<Long>{
         this.products = products;
     }
 
-    //
-
     @Override
     public String print() {
-        return null;
-    }
-
-    @Override
-    public LocalDateTime getCreatedAt() {
-        return super.getCreatedAt();
-    }
-
-    @Override
-    public void setCreatedAt(LocalDateTime createdAt) {
-        super.setCreatedAt(createdAt);
-    }
-
-    @Override
-    public String getCreatedBy() {
-        return super.getCreatedBy();
-    }
-
-    @Override
-    public void setCreatedBy(String createdBy) {
-        super.setCreatedBy(createdBy);
-    }
-
-    @Override
-    public LocalDateTime getUpdatedAt() {
-        return super.getUpdatedAt();
-    }
-
-    @Override
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        super.setUpdatedAt(updatedAt);
-    }
-
-    @Override
-    public String getUpdatedBy() {
-        return super.getUpdatedBy();
-    }
-
-    @Override
-    public void setUpdatedBy(String updatedBy) {
-        super.setUpdatedBy(updatedBy);
+        return "Order: " + getId();
     }
 }

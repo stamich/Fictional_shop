@@ -8,15 +8,16 @@ import javax.persistence.*;
  * @version 1.0
  */
 @Entity
-@Table(name = "user_profile")
-public class UserProfile extends AbstractDomainObject<Long>{
+@Table(name = "ORDER_STATUS")
+@SuppressWarnings("serial")
+public class OrderStatus extends AbstractDomainObject<Long> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "type", length = 15, unique = true, nullable = false)
-    private String type = UserProfileType.USER.getUserProfileType();
+    @Column(name = "STATUS", length = 10, unique = true, nullable = false)
+    private String status = OrderStatusType.NEW.getStatus();
 
     @Override
     public Long getId() {
@@ -27,16 +28,16 @@ public class UserProfile extends AbstractDomainObject<Long>{
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getStatus() {
+        return status;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override
     public String print() {
-        return "Type: " + getType();
+        return "Status: " + getStatus();
     }
 }

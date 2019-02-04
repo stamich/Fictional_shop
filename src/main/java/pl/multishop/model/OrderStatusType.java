@@ -1,6 +1,6 @@
 package pl.multishop.model;
 
-public enum Status {
+public enum OrderStatusType {
 
     NEW("NEW"),
     DELAYED("DELAYED"),
@@ -10,7 +10,7 @@ public enum Status {
 
     private String status;
 
-    private Status (String status){
+    private OrderStatusType(String status){
         this.status = status;
     }
 

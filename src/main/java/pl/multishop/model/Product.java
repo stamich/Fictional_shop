@@ -1,7 +1,11 @@
 package pl.multishop.model;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.sql.Blob;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -11,35 +15,38 @@ import java.util.Set;
  * @version 1.0
  */
 @Entity
-@Table(name = "produkt")
-public class Product {
+@DynamicInsert
+@DynamicUpdate
+@Table(name = "PRODUCT")
+@SuppressWarnings("serial")
+public class Product extends AbstractDomainObject<Long> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "numer_produktu", nullable = false, unique = true, updatable = false)
-    private int productId;
+    @Column(name = "PRODUCT_ID", nullable = false, unique = true, updatable = false)
+    private Long id;
 
-    @Column(name = "nazwa", nullable = false)
+    @Column(name = "NAME", nullable = false)
     private String productName;
 
-    @Column(name = "cena_jedn", nullable = false)
+    @Column(name = "PRICE", nullable = false)
     private Double unitPrice;
 
-    @Column(name = "opis_produktu", nullable = false)
+    @Column(name = "DESCRIPTION", nullable = false)
     private String productDescription;
 
-    @Column(name = "producent", nullable = false)
+    @Column(name = "MANUFACTURER", nullable = false)
     private String productManufacturer;
 
-    @Column(name = "kategoria", nullable = false)
+    @Column(name = "CATEGORY", nullable = false)
     private String productCategory;
 
-    @Column(name ="na_stanie", nullable = false)
+    @Column(name ="IN_STOCK", nullable = false)
     private long unitsInStock;
 
-    @Column(name ="zamowione", nullable = false)
+    @Column(name ="IN_ORDER", nullable = false)
     private long unitsInOrder;
 
-    @Column(name ="aktywny", nullable = false)
+    @Column(name ="ACTIVE", nullable = false)
     private boolean active;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
@@ -50,19 +57,19 @@ public class Product {
         super();
     }
 
-    public Product(int productId, String productName, Set<Client> clients) {
-        this.productId = productId;
+    public Product(Long id, String productName, Set<Client> clients) {
+        this.id = id;
         this.productName = productName;
         this.clients = clients;
     }
 
-
-    public int getProductId() {
-        return productId;
+    @Override
+    public Long getId() {
+        return id;
     }
 
-    public void setProductId(int productId) {
-        this.productId = productId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getProductName() {
@@ -138,22 +145,7 @@ public class Product {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Product product = (Product) o;
-
-        return productId == product.productId;
-    }
-
-    @Override
-    public int hashCode() {
-        return productId;
-    }
-
-    @Override
-    public String toString() {
-        return "Product [productId=" + productId + ", name=" + productName + "]";
+    public String print() {
+        return "Product: " + getId() + " " + getProductName();
     }
 }
