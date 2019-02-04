@@ -12,6 +12,6 @@ The frontend:
 - HTML5,
 - CSS3,
 - JavaScript,
-- Thymyleaf 3 (in project).
+- Thymyleaf 3
 
 Documentation made in JavaDoc.

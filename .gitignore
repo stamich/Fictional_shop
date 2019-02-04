@@ -9,4 +9,4 @@ web/**
 #file:
 
 .directory
-S11_Project.iml
+*.iml
