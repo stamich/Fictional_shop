@@ -1,55 +1,35 @@
-package pl.multishop.model;
+package pl.multishop.dto;
 
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
+import pl.multishop.model.Order;
+import pl.multishop.model.Product;
 
-import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity
-@DynamicInsert
-@DynamicUpdate
-@Table(name = "CLIENT")
-@SuppressWarnings("serial")
-public class Client extends AbstractDomainObject<Long>{
+public class ClientDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "CLIENT_ID", nullable = false, unique = true, updatable = false)
     private Long id;
 
-    @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
 
-    @Column(name = "LAST_NAME", nullable = false)
     private String lastName;
 
-    @Column(name = "HOME_ADRESS", nullable = false)
     private String homeAdress;
 
-    @Column(name = "SHIPPING_ADRESS")
     private String shippingAdress;
 
-    @Column(name = "CITY", nullable = false)
     private String city;
 
-    @Column(name = "COUNTRY", nullable = false)
     private String country;
 
-    @Column(name = "EMAIL", nullable = false)
     private String email;
 
-    @Column(name = "PHONE", nullable = false)
     private String phone;
 
-    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY, cascade = { CascadeType.ALL })
     private Set<Order> orders = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "clients")
     private Set<Product> products = new HashSet<>();
 
-    @Override
     public Long getId() {
         return id;
     }
@@ -136,10 +116,5 @@ public class Client extends AbstractDomainObject<Long>{
 
     public void setProducts(Set<Product> products) {
         this.products = products;
-    }
-
-    @Override
-    public String print() {
-        return "Client: " + getId() + " Name: " + getLastName();
     }
 }
