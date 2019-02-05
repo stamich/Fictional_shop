@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/bootstrap.css}">
+
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/theme1/css/style.css}">
+
+    <meta http-equiv="Content-Type" content="text/html"; charset="UTF-8">
+
+    <title>The city of code - Error page</title>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="starter-template">
+        <h1>Error 500 - Internal server error!</h1>
+        <div th:inline="text">Hello '[[${#httpServletRequest.remoteUser}]]', you do not have permission to access this page.</div>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -16,5 +16,6 @@ public interface OrderService {
     void updateOrder(Order order);
     void delOrderById(int orderId);
     List<Order> findAllOrders();
+    List<Order> findAllOrders(Long clientId);
     boolean isOrderNumberUnique(Long orderId, Long clientId);
 }

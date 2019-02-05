@@ -84,6 +84,11 @@ public class OrderServiceImpl implements OrderService {
         return orderDao.findAllOrders();
     }
 
+    @Override
+    public List<Order> findAllOrders(Long clientId) {
+        return orderDao.findAllOrders(clientId);
+    }
+
     /**
      * This method verifies if order number is unique.
      * @param orderId

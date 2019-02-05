@@ -15,5 +15,5 @@ public interface OrderDao {
     void saveOrder(Order order);
     void delOrderById(int orderId);
     List<Order> findAllOrders();
-
+    List<Order> findAllOrders(Long clientId);
 }

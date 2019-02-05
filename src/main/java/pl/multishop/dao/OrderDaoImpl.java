@@ -4,8 +4,10 @@ import org.hibernate.Criteria;
 import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
+import pl.multishop.model.Client;
 import pl.multishop.model.Order;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -66,5 +68,13 @@ public class OrderDaoImpl extends AbstractDao<Long, Order> implements OrderDao {
     public List<Order> findAllOrders() {
         Criteria criteria = createEntityCriteria();
         return (List<Order>) criteria.list();
+    }
+
+    @Override
+    public List<Order> findAllOrders(Long clientId) {
+        String hqlQuery = "SELECT c FROM Client c LEFT JOIN FETCH c.orders WHERE c.id.clientId="+clientId;
+        Query query = getSession().createQuery(hqlQuery);
+        Client client = (Client) query.uniqueResult();
+        return new ArrayList<>(client.getOrders());
     }
 }

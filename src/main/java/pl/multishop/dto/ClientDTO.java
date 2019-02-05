@@ -3,32 +3,21 @@ package pl.multishop.dto;
 import pl.multishop.model.Order;
 import pl.multishop.model.Product;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 public class ClientDTO {
 
     private Long id;
-
     private String firstName;
-
     private String lastName;
-
     private String homeAdress;
-
     private String shippingAdress;
-
     private String city;
-
     private String country;
-
     private String email;
-
     private String phone;
-
-    private Set<Order> orders = new HashSet<>();
-
-    private Set<Product> products = new HashSet<>();
+    private List<Order> orders;
+    private List<Product> products;
 
     public Long getId() {
         return id;
@@ -102,19 +91,19 @@ public class ClientDTO {
         this.phone = phone;
     }
 
-    public Set<Order> getOrders() {
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public void setOrders(Set<Order> orders) {
+    public void setOrders(List<Order> orders) {
         this.orders = orders;
     }
 
-    public Set<Product> getProducts() {
+    public List<Product> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(List<Product> products) {
         this.products = products;
     }
 }
